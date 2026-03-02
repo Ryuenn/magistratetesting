@@ -1,0 +1,11 @@
+server/
+composer.json
+composer.lock
+.env
+.env.*
+*.env
+*.env.*
+*.local.php
+*config.php
+*config.local.php
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Enroll in Magistrate Court Masterclass - Attorney-led curriculum for small claims, evictions, and civil disputes.">
+  <meta name="keywords" content="magistrate court masterclass, legal course, small claims, eviction">
+  <title>Magistrate Court Masterclass | Enroll Now</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="header__logo-img">
+    </a>
+    <nav>
+      <ul class="header__nav">
+        <li><a href="index.html">HOME</a></li>
+        <li class="nav-dropdown">
+          <a href="course.html" class="nav-active">COURSE</a>
+          <ul class="dropdown-menu">
+            <li><a href="course.html">Magistrate Court Masterclass</a></li>
+          </ul>
+        </li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="index.html#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+    <a href="course.html" class="header__cta">ENROLL NOW</a>
+  </header>
+
+  <main>
+    <section class="pricing-section">
+      <div class="pricing-card">
+        <h2 class="pricing-card__title">Magistrate Court Masterclass</h2>
+        <p class="pricing-card__subtitle">An Attorney-Led Curriculum To Help You Navigate Small Claims, Evictions, And Civil Disputes With Confidence.</p>
+        <div class="pricing-card__price">$<span id="priceDisplay">999.99</span></div>
+        <button type="button" class="pricing-card__btn" id="payBtn">Pay with Card</button>
+        <p id="payError" style="color: #e74c3c; font-size: 0.85rem; margin-top: 1rem; display: none;"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer footer--full">
+    <div class="footer__brush footer__brush--left"></div>
+    <div class="footer__brush footer__brush--right"></div>
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__top-left">
+          <span class="footer__connect">CONNECT WITH US</span>
+          <div class="footer__socials">
+            <a href="#" class="footer__social footer__social--tiktok" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="#" class="footer__social footer__social--twitter" aria-label="Twitter / X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="#" class="footer__social footer__social--facebook" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="footer__social footer__social--youtube" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        <a href="index.html#contact" class="footer__contact-btn">
+          <span class="footer__contact-icon">✉</span>
+          <span class="footer__contact-label">CONTACT US</span>
+        </a>
+      </div>
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="footer__logo-img">
+          </a>
+          <p class="footer__tagline">A Structured, Attorney-Led Masterclass Designed To Help Individuals Confidently Navigate Georgia Magistrate Court.</p>
+        </div>
+        <div class="footer__links-wrap">
+          <div class="footer__col">
+            <h4 class="footer__col-title">COURSE INQUIRIES</h4>
+            <a href="mailto:info@magistratecourtmastermind.com" class="footer__email">Info@Magistratecourtmastermind.Com</a>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-title">QUICK LINKS</h4>
+            <ul class="footer__quick-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="course.html">Course</a></li>
+              <li><a href="course.html">Masterclass Preview</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__divider"></span>
+        <p class="footer__legal">Copyright &copy; 2026 Magistrate Court Mastermind. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function() {
+      // Editable price: set here or fetch from server/get-price.php
+      var PRICE = 999.99;
+
+      // Optional: fetch price from server (edit config.php COURSE_PRICE to change)
+      var pathBase = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+      fetch(window.location.origin + pathBase + 'server/get-price.php')
+        .then(function(r) { return r.json(); })
+        .then(function(d) { PRICE = d.price; document.getElementById('priceDisplay').textContent = PRICE; })
+        .catch(function() { document.getElementById('priceDisplay').textContent = PRICE; });
+
+      document.getElementById('priceDisplay').textContent = PRICE;
+
+      var payBtn = document.getElementById('payBtn');
+      var payError = document.getElementById('payError');
+
+      payBtn.addEventListener('click', function() {
+        payBtn.disabled = true;
+        payBtn.textContent = 'Processing...';
+        payError.style.display = 'none';
+
+        // API endpoint - works from root or subfolder (e.g. yoursite.com/server/create-checkout-session.php)
+        var pathBase = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+        var apiUrl = window.location.origin + pathBase + 'server/create-checkout-session.php';
+
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount: PRICE * 100 })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.url) {
+            window.location.href = data.url;
+          } else {
+            throw new Error(data.error || data.message || 'Unknown error');
+          }
+        })
+        .catch(function(err) {
+          payError.textContent = err.message || 'Could not start checkout. Please try again.';
+          payError.style.display = 'block';
+          payBtn.disabled = false;
+          payBtn.textContent = 'Pay with Card';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+# Magistrate Court Mastermind - Apache config for GoDaddy shared hosting
+# PHP in /server/ executes normally. config.php protected via server/.htaccess
