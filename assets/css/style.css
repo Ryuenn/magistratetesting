@@ -483,7 +483,7 @@ body {
   display: flex;
   align-items: flex-end;
   margin-right: -545px; /* push person right to the visual edge */
-  margin-bottom: -230px; /* move instructor cutout further downward */
+  margin-bottom: -106px; /* move instructor cutout further downward */
 }
 
 /* Home hero person cutout */
