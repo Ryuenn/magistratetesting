@@ -491,7 +491,8 @@ body {
 }
 
 .hero__subtext {
-  font-size: 1.3rem;
+  font-size: 1.1rem; /* slightly smaller than before */
+  font-weight: 600;  /* make subtext bold */
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 1.5rem;
   max-width: 520px;
@@ -1015,13 +1016,73 @@ body {
   flex: 0 0 320px;
   aspect-ratio: 16/9;
   border-radius: 18px;
-  background-image: url('../images/thumbnail1.png');
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden;
   color: var(--white);
   font-weight: 600;
+}
+
+/* Specific thumbnails for introduction + each episode */
+.home-preview__item--intro {
+  background-image: url('../images/intro.png');
+}
+
+.home-preview__item--ep1 {
+  background-image: url('../images/ep1.png');
+}
+
+.home-preview__item--ep2 {
+  background-image: url('../images/ep2.png');
+}
+
+.home-preview__item--ep3 {
+  background-image: url('../images/ep3.png');
+}
+
+.home-preview__item--ep4 {
+  background-image: url('../images/ep4.png');
+}
+
+.home-preview__item--ep5 {
+  background-image: url('../images/ep5.png');
+}
+
+.home-preview__item--ep6 {
+  background-image: url('../images/ep6.png');
+}
+
+.home-preview__item--ep7 {
+  background-image: url('../images/ep7.png');
+}
+
+.home-preview__item--ep8 {
+  background-image: url('../images/ep8.png');
+}
+
+.home-preview__item--ep8-part2 {
+  background-image: url('../images/ep8part2.png');
+}
+
+.home-preview__item--ep9 {
+  background-image: url('../images/ep9.png');
+}
+
+.home-preview__item--ep10 {
+  background-image: url('../images/ep10.png');
+}
+
+.home-preview__item--ep10-part2 {
+  background-image: url('../images/ep10part2.png');
+}
+
+.home-preview__item--ep11 {
+  background-image: url('../images/ep11.png');
+}
+
+.home-preview__item--ep12 {
+  background-image: url('../images/ep12.png');
 }
 
 .home-preview__ep {
