@@ -172,7 +172,7 @@ body {
 }
 
 .contact-hero__office-cyan {
-  color: var(--cyan);
+  color: #000000;
 }
 
 .contact-hero__office-white {
@@ -2006,23 +2006,6 @@ body {
   color: #000000;
 }
 
-.course-hero__title-accent {
-  display: inline-block;
-  color: #ffffff; /* make text readable on cyan background */
-  position: relative;
-  margin-left: 0.35rem;
-}
-
-.course-hero__title-accent::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -8px;
-  height: 12px;
-  background: url("../images/clip_white.png") center / 100% 100% no-repeat;
-}
-
 .course-hero__badge {
   display: inline-block;
   padding: 0.35rem 0.9rem;
@@ -2302,8 +2285,12 @@ body {
 }
 
 .course-about__lead {
-  color: var(--cyan);
+  color: var(--black);
   font-weight: 800;
+}
+
+.course-about__lead-brand {
+  color: var(--cyan);
 }
 
 /* CURRICULUM */
