@@ -1471,6 +1471,7 @@ body {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   color: var(--white);
+  line-height: 1.05; /* tighten gap between lines */
   margin-bottom: 0.5rem;
 }
 
@@ -3173,6 +3174,7 @@ body {
   color: var(--gray);
   text-decoration: none;
   font-size: 0.9rem;
+  white-space: nowrap; /* keep labels like 'Masterclass Preview' on one line */
 }
 
 .footer__quick-links a:hover {
