@@ -166,4 +166,116 @@
 
     updateCurriculumView(1);
   }
+
+  // Masterclass preview thumbnails pagination (6 per page)
+  var previewThumbs = document.querySelectorAll('.preview-lessons__thumb');
+  var previewPages = document.querySelectorAll('.preview-lessons__page');
+  var previewNextPage = document.querySelector('.preview-lessons__page--next');
+
+  if (previewThumbs.length && previewPages.length && previewNextPage) {
+    var THUMBS_PER_PAGE = 6;
+    var previewCurrentPage = 1;
+    var previewMaxPage = Math.ceil(previewThumbs.length / THUMBS_PER_PAGE);
+
+    // Assign a page number to each thumb
+    previewThumbs.forEach(function(thumb, index) {
+      var page = Math.floor(index / THUMBS_PER_PAGE) + 1;
+      thumb.dataset.page = String(page);
+    });
+
+    // Hide page numbers that exceed maxPage
+    previewPages.forEach(function(pageEl) {
+      var p = parseInt(pageEl.dataset.page || pageEl.textContent || '0', 10);
+      if (!p || p > previewMaxPage) {
+        pageEl.classList.add('is-hidden');
+      }
+    });
+
+    var updatePreviewPage = function(page) {
+      previewCurrentPage = page;
+
+      previewThumbs.forEach(function(thumb) {
+        var pageForThumb = parseInt(thumb.dataset.page || '1', 10);
+        thumb.style.display = pageForThumb === page ? 'block' : 'none';
+      });
+
+      previewPages.forEach(function(pageEl) {
+        var p = parseInt(pageEl.dataset.page || pageEl.textContent || '0', 10);
+        pageEl.classList.toggle('preview-lessons__page--active', p === page);
+        pageEl.classList.remove('is-disabled');
+      });
+
+      var isLast = page >= previewMaxPage;
+      previewNextPage.classList.toggle('is-disabled', isLast);
+      if (isLast) {
+        previewNextPage.setAttribute('aria-disabled', 'true');
+      } else {
+        previewNextPage.removeAttribute('aria-disabled');
+      }
+    };
+
+    // Click handlers for numbered pages
+    previewPages.forEach(function(pageEl) {
+      if (pageEl.classList.contains('preview-lessons__page--next')) return;
+      var p = parseInt(pageEl.dataset.page || pageEl.textContent || '0', 10);
+      if (!p) return;
+      pageEl.addEventListener('click', function() {
+        if (p > previewMaxPage || pageEl.classList.contains('is-disabled')) return;
+        updatePreviewPage(p);
+      });
+    });
+
+    // Next button
+    previewNextPage.addEventListener('click', function() {
+      if (previewCurrentPage >= previewMaxPage || previewNextPage.classList.contains('is-disabled')) return;
+      updatePreviewPage(previewCurrentPage + 1);
+    });
+
+    updatePreviewPage(1);
+  }
+
+  // Masterclass preview: Vimeo modal player
+  var previewModal = document.querySelector('.preview-modal');
+  if (previewModal) {
+    var previewIframe = previewModal.querySelector('.preview-modal__iframe');
+    var previewBackdrop = previewModal.querySelector('.preview-modal__backdrop');
+    var previewClose = previewModal.querySelector('.preview-modal__close');
+    var videoButtons = document.querySelectorAll('.js-preview-video');
+
+    var closePreviewModal = function() {
+      previewModal.classList.remove('is-open');
+      if (previewIframe) {
+        previewIframe.src = '';
+      }
+    };
+
+    // Normalize Vimeo URL: vimeo.com/ID or player.vimeo.com/video/ID
+    var toVimeoEmbedUrl = function(url) {
+      if (!url || typeof url !== 'string') return '';
+      var m = url.match(/(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/);
+      if (!m) return url;
+      return 'https://player.vimeo.com/video/' + m[1] + '?autoplay=1&title=0&byline=0&portrait=0';
+    };
+
+    videoButtons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var url = btn.getAttribute('data-video');
+        if (!url || !previewIframe) return;
+        previewIframe.src = toVimeoEmbedUrl(url);
+        previewModal.classList.add('is-open');
+      });
+    });
+
+    if (previewBackdrop) {
+      previewBackdrop.addEventListener('click', closePreviewModal);
+    }
+    if (previewClose) {
+      previewClose.addEventListener('click', closePreviewModal);
+    }
+    document.addEventListener('keydown', function(evt) {
+      if (evt.key === 'Escape') {
+        closePreviewModal();
+      }
+    });
+  }
 })();
