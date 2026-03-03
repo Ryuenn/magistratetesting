@@ -6,6 +6,29 @@
 (function() {
   'use strict';
 
+  // Global page loader: simple logo + spinner on first load only
+  var pageLoader = document.querySelector('.page-loader');
+  if (pageLoader) {
+    // Hide loader when everything (including images) is loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        pageLoader.classList.add('is-hidden');
+      }, 200);
+    });
+
+    // Also hide once DOM is ready, in case load never fires (local dev quirks)
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        pageLoader.classList.add('is-hidden');
+      }, 400);
+    });
+
+    // Final safety: ensure it's gone after a few seconds no matter what
+    setTimeout(function() {
+      pageLoader.classList.add('is-hidden');
+    }, 5000);
+  }
+
   // Mobile nav toggle (optional - can expand for hamburger menu)
   // Current layout hides nav on mobile; add hamburger if desired
   

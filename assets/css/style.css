@@ -35,6 +35,56 @@ body {
   overflow-x: hidden;
 }
 
+/* Global page loader */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.page-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader__inner {
+  position: relative;
+  width: min(220px, 60vw); /* keep logo comfortably inside spinner */
+}
+
+.page-loader__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.page-loader__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+  margin-top: -130px;
+  margin-left: -130px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top-color: #00cfe8;
+  animation: page-loader-spin 0.9s linear infinite;
+  box-shadow: 0 0 24px rgba(0, 207, 232, 0.4);
+}
+
+@keyframes page-loader-spin {
+  to {
+    transform: rotate(360deg); /* classic clockwise loader */
+  }
+}
+
 .page-course {
   background: #ffffff;
   color: #111111;
