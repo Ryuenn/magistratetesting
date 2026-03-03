@@ -1122,7 +1122,7 @@ body {
 .preview-hero__title-main {
   color: #000000;
   display: block;
-  font-size: 0.55em;
+  font-size: 1em;
 }
 
 .preview-hero__title-accent {
@@ -1134,7 +1134,7 @@ body {
 .preview-hero__title-underline {
   color: #000000;
   display: inline-block;
-  font-size: 0.55em;
+  font-size: 1em;
   position: relative;
   padding-bottom: 0.5em;
 }
@@ -1144,12 +1144,12 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  right: 0;
+  width: 100%;
   height: 0.5em;
   background-image: url('../images/clip_white.png');
   background-repeat: no-repeat;
   background-position: left bottom;
-  background-size: 100% 100%;
+  background-size: contain;
   mix-blend-mode: screen;
 }
 
@@ -1228,6 +1228,7 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 1.75rem;
+  color: #000000;
 }
 
 .preview-lessons__title-accent {
@@ -1310,6 +1311,7 @@ body {
   font-size: 1.4rem;
   font-weight: 800;
   text-transform: uppercase;
+  color: #000000;
 }
 
 .preview-lessons__featured-text {
