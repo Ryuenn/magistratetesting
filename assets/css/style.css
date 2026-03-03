@@ -1024,11 +1024,7 @@ body {
   font-weight: 600;
 }
 
-/* Specific thumbnails for introduction + each episode */
-.home-preview__item--intro {
-  background-image: url('../images/intro.png');
-}
-
+/* Specific thumbnails for each episode */
 .home-preview__item--ep1 {
   background-image: url('../images/ep1.png');
 }
@@ -1093,6 +1089,7 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
+  display: none; /* hide episode label text on thumbnails */
 }
 
 .home-preview__name {
@@ -1103,6 +1100,7 @@ body {
   font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
+  display: none; /* hide bottom title text; thumbnails carry their own titles */
 }
 
 .home-preview__cta {
