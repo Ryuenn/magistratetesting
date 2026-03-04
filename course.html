@@ -64,7 +64,18 @@
             <div class="course-product-card__price">$<span id="priceDisplay">999.99</span></div>
 
             <button type="button" class="course-product-card__btn course-product-card__btn--primary" id="payBtn">ENROLL NOW</button>
-            <p id="payError" class="course-product-card__error" style="display: none;"></p>
+
+            <div class="course-product-card__secure">
+              <div class="course-product-card__secure-text">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                <span>Secure checkout powered by Stripe</span>
+              </div>
+              <div class="course-product-card__secure-icons" aria-label="Accepted payment methods">
+                <i class="fa-brands fa-cc-visa" aria-hidden="true"></i>
+                <i class="fa-brands fa-cc-mastercard" aria-hidden="true"></i>
+                <i class="fa-brands fa-cc-amex" aria-hidden="true"></i>
+              </div>
+            </div>
 
             <div class="course-product-card__divider" aria-hidden="true"></div>
 
@@ -370,36 +381,10 @@
       document.getElementById('priceDisplay').textContent = PRICE;
 
       var payBtn = document.getElementById('payBtn');
-      var payError = document.getElementById('payError');
 
-      payBtn.addEventListener('click', function() {
-        payBtn.disabled = true;
-        payBtn.textContent = 'Processing...';
-        payError.style.display = 'none';
-
-        // API endpoint - works from root or subfolder (e.g. yoursite.com/server/create-checkout-session.php)
-        var pathBase = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-        var apiUrl = window.location.origin + pathBase + 'server/create-checkout-session.php';
-
-        fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ amount: PRICE * 100 })
-        })
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          if (data.url) {
-            window.location.href = data.url;
-          } else {
-            throw new Error(data.error || data.message || 'Unknown error');
-          }
-        })
-        .catch(function(err) {
-          payError.textContent = err.message || 'Could not start checkout. Please try again.';
-          payError.style.display = 'block';
-          payBtn.disabled = false;
-          payBtn.textContent = 'Enroll Now';
-        });
+      payBtn.addEventListener('click', function () {
+        // Demo-only: navigate to local checkout page (no real payment)
+        window.location.href = 'checkout.html';
       });
     })();
   </script>

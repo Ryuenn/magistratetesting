@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student Portal - Magistrate Court Masterclass">
+  <title>Student Portal | Magistrate Court Mastermind</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=ff7b737">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .page-students {
+      background: #0a0a0a;
+      color: #ffffff;
+    }
+
+    .students-hero {
+      padding: 3.5rem 1.75rem 3rem;
+      background: radial-gradient(circle at top, rgba(0, 207, 232, 0.18), transparent 60%);
+    }
+
+    .students-hero__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .students-hero__title {
+      font-size: clamp(2.1rem, 3.4vw, 2.8rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .students-hero__title span {
+      display: block;
+    }
+
+    .students-hero__title-main {
+      color: #ffffff;
+    }
+
+    .students-hero__title-accent {
+      color: var(--cyan);
+    }
+
+    .students-hero__subtitle {
+      font-size: 0.95rem;
+      color: var(--gray);
+      max-width: 480px;
+    }
+
+    .students-gate {
+      background: #111111;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.75rem 1.75rem 1.6rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .students-gate__title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .students-gate__label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .students-gate__input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .students-gate__input {
+      flex: 1 1 180px;
+      min-width: 0;
+      padding: 0.8rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: #050505;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .students-gate__input:focus {
+      border-color: rgba(0, 207, 232, 0.9);
+      box-shadow: 0 0 0 2px rgba(0, 207, 232, 0.2);
+    }
+
+    .students-gate__button {
+      flex: 0 0 auto;
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--cyan);
+      color: #000000;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .students-gate__button:hover {
+      background: var(--cyan-hover);
+    }
+
+    .students-gate__hint {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 0.55rem;
+    }
+
+    .students-gate__error {
+      margin-top: 0.55rem;
+      font-size: 0.8rem;
+      color: #ff7675;
+      display: none;
+    }
+
+    .students-note {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .students-note strong {
+      color: var(--cyan);
+    }
+
+    .students-portal {
+      display: none;
+      padding: 0 1.75rem 4rem;
+    }
+
+    .students-portal__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.1fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .students-portal__heading {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .students-portal__modules {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.35rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .students-module {
+      background: #111111;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.1rem 1.1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .students-module__label {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .students-module__title {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .students-module__description {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .students-module__video {
+      margin-top: 0.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000000;
+      aspect-ratio: 16 / 9;
+    }
+
+    .students-module__video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .students-resources {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .students-card {
+      background: #111111;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.2rem 1.2rem 1.05rem;
+    }
+
+    .students-card__title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.7rem;
+    }
+
+    .students-card__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .students-card__list a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.87rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .students-card__list a i {
+      color: var(--cyan);
+      font-size: 0.85rem;
+    }
+
+    .students-card__text {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .students-card__text strong {
+      color: #ffffff;
+    }
+
+    .students-card__support-email {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .students-card__support-email:hover {
+      color: var(--cyan);
+    }
+
+    .students-portal__warning {
+      margin-top: 1.1rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .students-portal__warning strong {
+      color: var(--cyan);
+    }
+
+    @media (max-width: 980px) {
+      .students-hero__inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .students-portal__inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .students-portal__modules {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .students-portal__modules {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .students-portal {
+        padding: 0 1.1rem 3.25rem;
+      }
+
+      .students-hero {
+        padding: 3rem 1.1rem 2.5rem;
+      }
+
+      .students-gate {
+        padding: 1.6rem 1.35rem 1.4rem;
+      }
+
+      .students-gate__input-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .students-gate__button {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body class="page-students">
+  <div class="page-loader">
+    <div class="page-loader__inner">
+      <div class="page-loader__ring"></div>
+      <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="page-loader__logo">
+    </div>
+  </div>
+
+  <header class="header">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="header__logo-img">
+    </a>
+    <nav>
+      <ul class="header__nav">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="course.html">COURSES</a></li>
+        <li><a href="masterclass-preview.html">MASTERCLASS PREVIEW</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+    <a href="course.html" class="header__cta">ENROLL NOW</a>
+  </header>
+
+  <main>
+    <section class="students-hero">
+      <div class="students-hero__inner">
+        <div>
+          <h1 class="students-hero__title">
+            <span class="students-hero__title-main">Student Portal</span>
+            <span class="students-hero__title-accent">Magistrate Court Masterclass</span>
+          </h1>
+          <p class="students-hero__subtitle">
+            Enter your access code to unlock all current modules, materials, and future updates to Magistrate Court Masterclass.
+          </p>
+        </div>
+
+        <div class="students-gate" id="studentsGate">
+          <h2 class="students-gate__title">Secure Access</h2>
+          <label for="accessCodeInput" class="students-gate__label">Access Code</label>
+          <div class="students-gate__input-row">
+            <input
+              id="accessCodeInput"
+              type="password"
+              class="students-gate__input"
+              autocomplete="off"
+              placeholder="Enter your access code"
+            >
+            <button type="button" class="students-gate__button" id="accessCodeButton">Enter</button>
+          </div>
+          <p class="students-gate__hint">Use the code you received in your enrollment email.</p>
+          <p class="students-gate__error" id="accessCodeError">That code doesn’t look right. Please double‑check your email and try again.</p>
+          <p class="students-note">
+            <strong>Note:</strong> Do not share your access code. It is for your personal use only.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="students-portal" id="studentsPortal" aria-hidden="true">
+      <div class="students-portal__inner">
+        <div>
+          <h2 class="students-portal__heading">Your Modules</h2>
+
+          <div class="students-portal__modules">
+            <article class="students-module">
+              <div class="students-module__label">Module 1</div>
+              <h3 class="students-module__title">Foundations of Magistrate Court</h3>
+              <p class="students-module__description">
+                Get oriented to the Magistrate Court process, key terms, and what to expect from start to finish.
+              </p>
+              <div class="students-module__video">
+                <iframe
+                  src="https://player.vimeo.com/video/000000000"
+                  title="Module 1 video placeholder"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </article>
+
+            <article class="students-module">
+              <div class="students-module__label">Module 2</div>
+              <h3 class="students-module__title">Evidence, Strategy &amp; Preparation</h3>
+              <p class="students-module__description">
+                Learn how to gather, organize, and present evidence in a way that supports your story in court.
+              </p>
+              <div class="students-module__video">
+                <iframe
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="Module 2 video placeholder"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </article>
+
+            <article class="students-module">
+              <div class="students-module__label">Module 3</div>
+              <h3 class="students-module__title">Trial Day &amp; Next Steps</h3>
+              <p class="students-module__description">
+                Walk through a realistic trial day checklist so you can show up clear, calm, and ready.
+              </p>
+              <div class="students-module__video">
+                <iframe
+                  src="https://player.vimeo.com/video/000000001"
+                  title="Module 3 video placeholder"
+                  loading="lazy"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </article>
+          </div>
+
+          <p class="students-portal__warning">
+            <strong>Reminder:</strong> Do not share your access code or portal content. This training is licensed for your personal use.
+          </p>
+        </div>
+
+        <aside class="students-resources" aria-label="Course resources and support">
+          <section class="students-card">
+            <h3 class="students-card__title">Download Materials</h3>
+            <ul class="students-card__list">
+              <li>
+                <a href="#" aria-disabled="true">
+                  <i class="fa-regular fa-file-pdf"></i>
+                  Magistrate Court Checklist (PDF)
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-disabled="true">
+                  <i class="fa-regular fa-file-pdf"></i>
+                  Evidence Organizer Worksheet (PDF)
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-disabled="true">
+                  <i class="fa-regular fa-file-pdf"></i>
+                  Sample Opening &amp; Closing Scripts (PDF)
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="students-card">
+            <h3 class="students-card__title">Support</h3>
+            <p class="students-card__text">
+              Questions about access or course content? Reach our team at
+              <a href="mailto:support@magistratecourtmastermind.com" class="students-card__support-email">support@magistratecourtmastermind.com</a>.
+            </p>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer footer--full">
+    <div class="footer__brush footer__brush--left"></div>
+    <div class="footer__brush footer__brush--right"></div>
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__top-left">
+          <span class="footer__connect">CONNECT WITH US</span>
+        </div>
+        <a href="contact.html" class="footer__contact-btn">
+          <span class="footer__contact-icon">✉</span>
+          <span class="footer__contact-label">CONTACT US</span>
+        </a>
+      </div>
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="footer__logo-img">
+          </a>
+          <p class="footer__tagline">A Structured, Attorney-Led Masterclass Designed To Help Individuals Confidently Navigate Georgia Magistrate Court.</p>
+        </div>
+        <div class="footer__links-wrap">
+          <div class="footer__col">
+            <h4 class="footer__col-title">COURSE INQUIRIES</h4>
+            <a href="mailto:info@magistratecourtmastermind.com" class="footer__email">Info@Magistratecourtmastermind.Com</a>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-title">QUICK LINKS</h4>
+            <ul class="footer__quick-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="course.html">Course</a></li>
+              <li><a href="course.html">Masterclass Preview</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__divider"></span>
+        <p class="footer__legal">Copyright &copy; 2026 Magistrate Court Mastermind. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      // Single source of truth for the access code used across the site
+      var ACCESS_CODE = "MC2026";
+
+      var input = document.getElementById('accessCodeInput');
+      var button = document.getElementById('accessCodeButton');
+      var errorEl = document.getElementById('accessCodeError');
+      var portal = document.getElementById('studentsPortal');
+      var gate = document.getElementById('studentsGate');
+
+      function normalizeCode(value) {
+        return (value || '').trim().toUpperCase();
+      }
+
+      function revealPortal() {
+        if (gate) {
+          gate.style.display = 'none';
+        }
+        if (portal) {
+          portal.style.display = 'block';
+          portal.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function handleSubmit() {
+        if (!input || !button || !errorEl) return;
+
+        var value = normalizeCode(input.value);
+
+        if (value === normalizeCode(ACCESS_CODE)) {
+          errorEl.style.display = 'none';
+          revealPortal();
+        } else {
+          errorEl.style.display = 'block';
+        }
+      }
+
+      if (button) {
+        button.addEventListener('click', handleSubmit);
+      }
+
+      if (input) {
+        input.addEventListener('keydown', function (evt) {
+          if (evt.key === 'Enter') {
+            evt.preventDefault();
+            handleSubmit();
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
+

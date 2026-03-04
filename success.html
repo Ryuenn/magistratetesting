@@ -7,6 +7,262 @@
   <title>Payment Successful | Magistrate Court Mastermind</title>
   <link rel="stylesheet" href="assets/css/style.css?v=ff7b737">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .success-page {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem 4rem;
+      background: radial-gradient(circle at top, rgba(0, 207, 232, 0.14), transparent 55%);
+    }
+
+    .success-page__inner {
+      width: 100%;
+      max-width: 880px;
+      background: #111111;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.65);
+      padding: 2.5rem 2.5rem 2.4rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+
+    .success-page__header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .success-page__icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: rgba(0, 207, 232, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .success-page__title {
+      font-size: 1.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+      color: #ffffff;
+    }
+
+    .success-page__subtitle {
+      font-size: 0.95rem;
+      color: var(--gray);
+      max-width: 460px;
+    }
+
+    .success-page__body {
+      margin-bottom: 1.5rem;
+    }
+
+    .success-page__message {
+      font-size: 0.95rem;
+      color: #f5f5f5;
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+
+    .success-page__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .success-page__btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.75rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--cyan);
+      color: #000000;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .success-page__btn-primary:hover {
+      background: var(--cyan-hover);
+    }
+
+    .success-page__btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .success-page__btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .success-page__checklist {
+      margin-top: 2rem;
+    }
+
+    .success-page__checklist-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .success-page__checklist-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .success-page__checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: #f5f5f5;
+    }
+
+    .success-page__checklist-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(0, 207, 232, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      margin-top: 0.05rem;
+    }
+
+    .success-page__email-card {
+      background: #181818;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem 1.5rem 1.35rem;
+      font-size: 0.85rem;
+      color: #e5e5e5;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .success-page__email-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .success-page__email-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .success-page__email-badge {
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 0.68rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+
+    .success-page__email-label {
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .success-page__email-body {
+      padding: 0.8rem 0.85rem;
+      border-radius: 10px;
+      background: #0f0f0f;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      white-space: pre-line;
+    }
+
+    .success-page__email-note {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+
+    .success-page__email-note em {
+      font-style: normal;
+      color: var(--cyan);
+    }
+
+    @media (max-width: 900px) {
+      .success-page__inner {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 2rem 1.5rem 1.8rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .success-page {
+        padding: 2.5rem 1rem 3rem;
+      }
+
+      .success-page__inner {
+        border-radius: 18px;
+        padding: 1.8rem 1.4rem 1.6rem;
+        gap: 2rem;
+      }
+
+      .success-page__title {
+        font-size: 1.5rem;
+      }
+
+      .success-page__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .success-page__btn-secondary {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="page-loader">
@@ -17,12 +273,7 @@
   </div>
   <header class="header">
     <a href="index.html" class="header__logo">
-      <svg class="header__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M16 4v12M16 16l6 4M16 16l-6 4M10 20v4h12v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="22" cy="20" r="2.5" stroke="currentColor" stroke-width="1.2"/>
-        <circle cx="10" cy="20" r="2.5" stroke="currentColor" stroke-width="1.2"/>
-      </svg>
-      MAGISTRATE COURT MASTERMIND
+      <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="header__logo-img">
     </a>
     <nav>
       <ul class="header__nav">
@@ -37,12 +288,96 @@
   </header>
 
   <main>
-    <section class="status-page">
-      <div class="status-card success">
-        <div class="status-card__icon">&#10003;</div>
-        <h2 class="status-card__title">Payment Successful</h2>
-        <p class="status-card__text">Thank you for enrolling in Magistrate Court Masterclass. You will receive access details shortly.</p>
-        <a href="index.html">Return to Home</a>
+    <section class="success-page">
+      <div class="success-page__inner">
+        <div>
+          <div class="success-page__header">
+            <div class="success-page__icon" aria-hidden="true">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+              <h1 class="success-page__title">Payment successful</h1>
+              <p class="success-page__subtitle">You’re officially enrolled in Magistrate Court Masterclass.</p>
+            </div>
+          </div>
+
+          <div class="success-page__body">
+            <p class="success-page__message">
+              Thanks for enrolling. We sent access instructions to your email. If you don’t see it in a few minutes,
+              please check your spam or promotions folder.
+            </p>
+
+            <div class="success-page__actions">
+              <a href="students.html" class="success-page__btn-primary">Go to Student Portal</a>
+              <a href="course.html" class="success-page__btn-secondary">Back to Courses</a>
+            </div>
+          </div>
+
+          <div class="success-page__checklist" aria-labelledby="what-happens-next-title">
+            <h2 id="what-happens-next-title" class="success-page__checklist-title">What happens next</h2>
+            <ul class="success-page__checklist-list">
+              <li class="success-page__checklist-item">
+                <span class="success-page__checklist-icon" aria-hidden="true"><i class="fa-solid fa-envelope-open-text"></i></span>
+                <span>1. Check your email for your Magistrate Court Masterclass welcome message.</span>
+              </li>
+              <li class="success-page__checklist-item">
+                <span class="success-page__checklist-icon" aria-hidden="true"><i class="fa-solid fa-user-graduate"></i></span>
+                <span>2. Open the Student Portal link included in the email (or use the button above).</span>
+              </li>
+              <li class="success-page__checklist-item">
+                <span class="success-page__checklist-icon" aria-hidden="true"><i class="fa-solid fa-key"></i></span>
+                <span>3. Enter your access code <strong>MC2026</strong> to unlock your modules.</span>
+              </li>
+              <li class="success-page__checklist-item">
+                <span class="success-page__checklist-icon" aria-hidden="true"><i class="fa-solid fa-play-circle"></i></span>
+                <span>4. Start Module 1 and follow the step-by-step training.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="success-page__email-card" aria-label="Sample enrollment email">
+          <div class="success-page__email-header">
+            <h2 class="success-page__email-title">Sample Email</h2>
+            <span class="success-page__email-badge">Email Template</span>
+          </div>
+
+          <div>
+            <div>
+              <span class="success-page__email-label">Subject:</span>
+              <span>Thanks for enrolling</span>
+            </div>
+          </div>
+
+          <div class="success-page__email-body">
+Dear Student,
+
+Thank you for enrolling in Magistrate Court Masterclass.
+
+You can access your training here:
+Student Portal: https://YOURDOMAIN/students.html
+Access Code: MC2026
+
+How to get started:
+1. Open the Student Portal link above.
+2. Enter your access code when prompted.
+3. Unlock Module 1 and follow the lessons in order.
+
+If you have any trouble accessing the portal, reply to this email and our team will help.
+
+Best regards,
+Magistrate Court Mastermind Team
+          </div>
+
+          <p class="success-page__email-note">
+            For demo purposes only. <em>This is the exact email template we plan to send after a successful payment.</em>
+          </p>
+
+          <!--
+            In production, this email will be sent automatically after payment
+            via Stripe automation (Zapier/Make) or a webhook-powered backend.
+          -->
+        </aside>
       </div>
     </section>
   </main>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Demo checkout - Magistrate Court Masterclass">
+  <title>Checkout | Magistrate Court Mastermind</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=ff7b737">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .page-checkout {
+      background: #050505;
+      color: #ffffff;
+    }
+
+    .checkout-page {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem 4rem;
+      background:
+        radial-gradient(circle at top, rgba(0, 207, 232, 0.2), transparent 60%),
+        radial-gradient(circle at bottom, rgba(0, 0, 0, 0.8), #050505 65%);
+    }
+
+    .checkout-page__inner {
+      width: 100%;
+      max-width: 980px;
+      background: #111111;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+      padding: 2.25rem 2.4rem 2.1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr);
+      gap: 2.25rem;
+    }
+
+    .checkout-summary__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(0, 207, 232, 0.16);
+      border: 1px solid rgba(0, 207, 232, 0.45);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.9rem;
+    }
+
+    .checkout-summary__title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+    }
+
+    .checkout-summary__subtitle {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .checkout-summary__price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .checkout-summary__meta {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .checkout-summary__list-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .checkout-summary__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.87rem;
+    }
+
+    .checkout-summary__list li {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #f5f5f5;
+    }
+
+    .checkout-summary__list i {
+      color: var(--cyan);
+      font-size: 0.85rem;
+    }
+
+    .checkout-secure-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.65rem 0.9rem;
+      margin-top: 1.4rem;
+      border-radius: 12px;
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .checkout-secure-row__left {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .checkout-secure-row__left i {
+      color: var(--cyan);
+    }
+
+    .checkout-secure-row__icons {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 1.4rem;
+      color: #ffffff;
+    }
+
+    .checkout-secure-row__icons i {
+      opacity: 0.9;
+    }
+
+    .checkout-form {
+      background: #0a0a0a;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 1.4rem 1.5rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .checkout-form__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      gap: 0.75rem;
+    }
+
+    .checkout-form__title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .checkout-form__demo-tag {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--gray);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .checkout-form__group {
+      margin-bottom: 0.8rem;
+    }
+
+    .checkout-form__label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .checkout-form__input,
+    .checkout-form__select {
+      width: 100%;
+      padding: 0.75rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #050505;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .checkout-form__input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .checkout-form__input:focus,
+    .checkout-form__select:focus {
+      border-color: rgba(0, 207, 232, 0.9);
+      box-shadow: 0 0 0 2px rgba(0, 207, 232, 0.18);
+    }
+
+    .checkout-form__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+    }
+
+    .checkout-form__terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin: 0.6rem 0 0.9rem;
+    }
+
+    .checkout-form__terms input {
+      margin-top: 0.15rem;
+    }
+
+    .checkout-form__helper {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-bottom: 0.9rem;
+    }
+
+    .checkout-form__helper strong {
+      color: var(--cyan);
+    }
+
+    .checkout-form__submit {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--cyan);
+      color: #000000;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: background 0.15s ease, transform 0.08s ease;
+    }
+
+    .checkout-form__submit:hover {
+      background: var(--cyan-hover);
+    }
+
+    .checkout-form__submit:disabled {
+      opacity: 0.7;
+      cursor: default;
+      transform: none;
+    }
+
+    .checkout-form__submit-spinner {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 2px solid rgba(0, 0, 0, 0.12);
+      border-top-color: #000000;
+      animation: checkout-spin 0.7s linear infinite;
+      display: none;
+    }
+
+    .checkout-form--processing .checkout-form__submit-spinner {
+      display: inline-block;
+    }
+
+    .checkout-form--processing .checkout-form__submit-text {
+      opacity: 0.9;
+    }
+
+    .checkout-form__processing {
+      margin-top: 0.85rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.8rem;
+      color: var(--gray);
+      min-height: 1.6rem;
+      display: none;
+    }
+
+    .checkout-form--processing .checkout-form__processing {
+      display: block;
+    }
+
+    .checkout-form__steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .checkout-form__step {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--gray);
+    }
+
+    .checkout-form__step-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .checkout-form__step--active {
+      color: #ffffff;
+      background: rgba(0, 207, 232, 0.18);
+    }
+
+    .checkout-form__step--active .checkout-form__step-dot {
+      background: var(--cyan);
+    }
+
+    .checkout-form__result {
+      margin-top: 0.65rem;
+      font-size: 0.8rem;
+      color: #2ecc71;
+      display: none;
+      display: none;
+    }
+
+    .checkout-form--confirmed .checkout-form__result {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .checkout-form__result i {
+      color: #2ecc71;
+    }
+
+    @keyframes checkout-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .checkout-page__inner {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 2rem 1.5rem 1.9rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .checkout-page {
+        padding: 2.5rem 1rem 3rem;
+      }
+
+      .checkout-page__inner {
+        border-radius: 18px;
+        padding: 1.8rem 1.4rem 1.7rem;
+        gap: 1.8rem;
+      }
+
+      .checkout-secure-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .checkout-form__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 460px) {
+      .checkout-form__grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body class="page-checkout">
+  <div class="page-loader">
+    <div class="page-loader__inner">
+      <div class="page-loader__ring"></div>
+      <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="page-loader__logo">
+    </div>
+  </div>
+
+  <header class="header">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="header__logo-img">
+    </a>
+    <nav>
+      <ul class="header__nav">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="course.html" class="nav-active">COURSES</a></li>
+        <li><a href="masterclass-preview.html">MASTERCLASS PREVIEW</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+    <a href="course.html" class="header__cta">ENROLL NOW</a>
+  </header>
+
+  <main>
+    <section class="checkout-page">
+      <div class="checkout-page__inner">
+        <aside aria-label="Order summary">
+          <div class="checkout-summary__badge">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            <span>Magistrate Court Masterclass</span>
+          </div>
+          <h1 class="checkout-summary__title">Full Course Access</h1>
+          <p class="checkout-summary__subtitle">
+            Attorney-led training to help you confidently navigate Georgia Magistrate Court from first notice to final judgment.
+          </p>
+
+          <div class="checkout-summary__price">$999.99</div>
+          <div class="checkout-summary__meta">One-time payment • Lifetime access • Immediate portal unlock</div>
+
+          <div>
+            <div class="checkout-summary__list-title">You’ll get instant access to:</div>
+            <ul class="checkout-summary__list">
+              <li>
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                3 core modules covering preparation, evidence, and trial strategy
+              </li>
+              <li>
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                Downloadable checklists &amp; worksheets
+              </li>
+              <li>
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                Step-by-step guidance from an experienced trial attorney
+              </li>
+            </ul>
+          </div>
+
+          <div class="checkout-secure-row">
+            <div class="checkout-secure-row__left">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <span>Secure demo checkout &mdash; for testing only</span>
+            </div>
+            <div class="checkout-secure-row__icons" aria-label="Accepted payment methods (demo)">
+              <i class="fa-brands fa-cc-visa" aria-hidden="true"></i>
+              <i class="fa-brands fa-cc-mastercard" aria-hidden="true"></i>
+              <i class="fa-brands fa-cc-amex" aria-hidden="true"></i>
+            </div>
+          </div>
+        </aside>
+
+        <section aria-label="Payment form">
+          <form class="checkout-form" id="checkoutForm" novalidate>
+            <div class="checkout-form__header">
+              <h2 class="checkout-form__title">Payment details</h2>
+              <span class="checkout-form__demo-tag">Demo only &mdash; no real charge</span>
+            </div>
+
+            <div class="checkout-form__group">
+              <label for="email" class="checkout-form__label">Email</label>
+              <input id="email" type="email" class="checkout-form__input" placeholder="you@example.com">
+            </div>
+
+            <div class="checkout-form__group">
+              <label for="cardNumber" class="checkout-form__label">Card number</label>
+              <input
+                id="cardNumber"
+                type="text"
+                inputmode="numeric"
+                class="checkout-form__input"
+                placeholder="4242 4242 4242 4242"
+              >
+            </div>
+
+            <div class="checkout-form__group checkout-form__grid">
+              <div>
+                <label for="cardExpiry" class="checkout-form__label">Expiry</label>
+                <input
+                  id="cardExpiry"
+                  type="text"
+                  inputmode="numeric"
+                  class="checkout-form__input"
+                  placeholder="MM/YY"
+                >
+              </div>
+              <div>
+                <label for="cardCvc" class="checkout-form__label">CVC</label>
+                <input
+                  id="cardCvc"
+                  type="text"
+                  inputmode="numeric"
+                  class="checkout-form__input"
+                  placeholder="CVC"
+                >
+              </div>
+              <div>
+                <label for="cardName" class="checkout-form__label">Name on card</label>
+                <input
+                  id="cardName"
+                  type="text"
+                  class="checkout-form__input"
+                  placeholder="Full name"
+                >
+              </div>
+            </div>
+
+            <div class="checkout-form__group">
+              <label for="country" class="checkout-form__label">Country or region (optional)</label>
+              <select id="country" class="checkout-form__select">
+                <option value="">Select a country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="AU">Australia</option>
+              </select>
+            </div>
+
+            <label class="checkout-form__terms">
+              <input type="checkbox" id="agreeTerms">
+              <span>I agree to the demo terms and understand this is a test-only checkout with no real payment.</span>
+            </label>
+
+            <p class="checkout-form__helper">
+              <strong>Demo checkout:</strong> no payment will be processed. Use any test data; this flow is for UX review and internal demos only.
+            </p>
+
+            <button type="submit" class="checkout-form__submit" id="payButton">
+              <span class="checkout-form__submit-spinner" aria-hidden="true"></span>
+              <span class="checkout-form__submit-text">Pay $999.99</span>
+            </button>
+
+            <div class="checkout-form__processing" id="processingState" aria-live="polite">
+              <div class="checkout-form__steps">
+                <span class="checkout-form__step" data-step="encrypting">
+                  <span class="checkout-form__step-dot"></span>
+                  Encrypting
+                </span>
+                <span class="checkout-form__step" data-step="authorizing">
+                  <span class="checkout-form__step-dot"></span>
+                  Authorizing
+                </span>
+                <span class="checkout-form__step" data-step="confirming">
+                  <span class="checkout-form__step-dot"></span>
+                  Confirming
+                </span>
+              </div>
+              <div class="checkout-form__result" id="processingResult">
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                <span>Payment confirmed</span>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer footer--full">
+    <div class="footer__brush footer__brush--left"></div>
+    <div class="footer__brush footer__brush--right"></div>
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__top-left">
+          <span class="footer__connect">CONNECT WITH US</span>
+        </div>
+        <a href="contact.html" class="footer__contact-btn">
+          <span class="footer__contact-icon">✉</span>
+          <span class="footer__contact-label">CONTACT US</span>
+        </a>
+      </div>
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="footer__logo-img">
+          </a>
+          <p class="footer__tagline">A Structured, Attorney-Led Masterclass Designed To Help Individuals Confidently Navigate Georgia Magistrate Court.</p>
+        </div>
+        <div class="footer__links-wrap">
+          <div class="footer__col">
+            <h4 class="footer__col-title">COURSE INQUIRIES</h4>
+            <a href="mailto:info@magistratecourtmastermind.com" class="footer__email">Info@Magistratecourtmastermind.Com</a>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-title">QUICK LINKS</h4>
+            <ul class="footer__quick-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="course.html">Course</a></li>
+              <li><a href="course.html">Masterclass Preview</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__divider"></span>
+        <p class="footer__legal">Copyright &copy; 2026 Magistrate Court Mastermind. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('checkoutForm');
+      var payButton = document.getElementById('payButton');
+      var container = document.querySelector('.checkout-form');
+      var steps = document.querySelectorAll('.checkout-form__step');
+      var result = document.getElementById('processingResult');
+      var isProcessing = false;
+
+      function setActiveStep(name) {
+        steps.forEach(function (step) {
+          var stepName = step.getAttribute('data-step');
+          if (stepName === name) {
+            step.classList.add('checkout-form__step--active');
+          } else {
+            step.classList.remove('checkout-form__step--active');
+          }
+        });
+      }
+
+      function startProcessingSequence() {
+        if (!container) return;
+
+        container.classList.add('checkout-form--processing');
+        container.classList.remove('checkout-form--confirmed');
+        setActiveStep('encrypting');
+
+        setTimeout(function () {
+          setActiveStep('authorizing');
+        }, 650);
+
+        setTimeout(function () {
+          setActiveStep('confirming');
+        }, 1300);
+
+        // Show short success micro-interaction, then redirect
+        setTimeout(function () {
+          container.classList.add('checkout-form--confirmed');
+          // Small pause to show confirmation before redirecting
+          setTimeout(function () {
+            window.location.href = 'success.html';
+          }, 600);
+        }, 1900);
+      }
+
+      if (form && payButton) {
+        form.addEventListener('submit', function (evt) {
+          evt.preventDefault();
+          if (isProcessing) return;
+          isProcessing = true;
+
+          payButton.disabled = true;
+          if (container) {
+            container.setAttribute('aria-busy', 'true');
+          }
+
+          startProcessingSequence();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
+
