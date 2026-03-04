@@ -1073,20 +1073,12 @@ body {
   background-image: url('../images/ep8.png');
 }
 
-.home-preview__item--ep8-part2 {
-  background-image: url('../images/ep8part2.png');
-}
-
 .home-preview__item--ep9 {
   background-image: url('../images/ep9.png');
 }
 
 .home-preview__item--ep10 {
   background-image: url('../images/ep10.png');
-}
-
-.home-preview__item--ep10-part2 {
-  background-image: url('../images/ep10part2.png');
 }
 
 .home-preview__item--ep11 {
@@ -1381,10 +1373,10 @@ body {
 .preview-lessons__thumb--ep6       { background-image: url('../images/ep6.png'); }
 .preview-lessons__thumb--ep7       { background-image: url('../images/ep7.png'); }
 .preview-lessons__thumb--ep8       { background-image: url('../images/ep8.png'); }
-.preview-lessons__thumb--ep8-part2 { background-image: url('../images/ep8part2.png'); }
 .preview-lessons__thumb--ep9       { background-image: url('../images/ep9.png'); }
 .preview-lessons__thumb--ep10      { background-image: url('../images/ep10.png'); }
-.preview-lessons__thumb--ep10-part2{ background-image: url('../images/ep10part2.png'); }
+.preview-lessons__thumb--ep11      { background-image: url('../images/ep11.png'); }
+.preview-lessons__thumb--ep12      { background-image: url('../images/ep12.png'); }
 
 .preview-lessons__pagination {
   display: flex;
