@@ -157,6 +157,90 @@
       align-items: flex-start;
     }
 
+    .students-progress-header {
+      background: #111111;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.25rem 1.5rem 1.25rem;
+      margin-bottom: 1.75rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .students-progress-header__title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .students-progress-header__sub {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin: 0;
+    }
+
+    .students-progress-header__bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .students-progress-header__bar {
+      flex: 1;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .students-progress-header__bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--cyan);
+      transition: width 0.3s ease;
+    }
+
+    .students-progress-header__text {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+
+    .students-progress-header__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .students-progress-header__continue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--cyan);
+      color: #000000;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .students-progress-header__continue:hover {
+      background: var(--cyan-hover);
+    }
+
+    .students-progress-header__continue:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .students-portal__heading {
       font-size: 1.3rem;
       font-weight: 800;
@@ -165,21 +249,106 @@
       margin-bottom: 1rem;
     }
 
+    .students-module--locked .students-module__video {
+      pointer-events: none;
+    }
+
+    .students-module__locked-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 12px;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .students-module--locked .students-module__locked-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .students-module__locked-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .students-module__locked-text {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gray);
+      text-align: center;
+      padding: 0 0.75rem;
+    }
+
+    .students-module__complete-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 207, 232, 0.4);
+      background: rgba(0, 207, 232, 0.1);
+      color: var(--cyan);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .students-module__complete-btn:hover {
+      background: rgba(0, 207, 232, 0.2);
+      border-color: var(--cyan);
+    }
+
+    .students-module__complete-btn.is-complete {
+      border-color: rgba(46, 204, 113, 0.5);
+      background: rgba(46, 204, 113, 0.15);
+      color: #2ecc71;
+    }
+
+    .students-module__complete-btn.is-complete:hover {
+      background: rgba(46, 204, 113, 0.25);
+    }
+
+    .students-module__actions {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
     .students-portal__modules {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.35rem;
-      margin-bottom: 2.25rem;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
     }
 
     .students-module {
       background: #111111;
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 1.1rem 1.1rem 1rem;
+      padding: 1.25rem 1.25rem 1.1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.65rem;
     }
 
     .students-module__label {
@@ -191,28 +360,176 @@
     }
 
     .students-module__title {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 800;
+      line-height: 1.25;
     }
 
     .students-module__description {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--gray);
+      line-height: 1.5;
     }
 
     .students-module__video {
       margin-top: 0.5rem;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      background: #000000;
+      background: #0d0d0d;
       aspect-ratio: 16 / 9;
+      position: relative;
+      cursor: pointer;
+      display: block;
     }
 
-    .students-module__video iframe {
+    .students-module__video:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--cyan);
+    }
+
+    .students-module__video-thumb {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #0d0d0d;
+      transition: transform 0.25s ease;
+    }
+
+    .students-module__video:hover .students-module__video-thumb {
+      transform: scale(1.04);
+    }
+
+    .students-module__video-play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+
+    .students-module__video-play i {
+      margin-left: 4px;
+    }
+
+    .students-module__video:hover .students-module__video-play {
+      background: var(--cyan);
+      color: #000;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    /* Video popout modal */
+    .students-video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .students-video-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .students-video-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+    }
+
+    .students-video-modal__box {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 960px;
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      transform: scale(0.92);
+      transition: transform 0.25s ease;
+    }
+
+    .students-video-modal.is-open .students-video-modal__box {
+      transform: scale(1);
+    }
+
+    .students-video-modal__close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 2;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .students-video-modal__close:hover {
+      background: var(--cyan);
+      color: #000;
+    }
+
+    .students-video-modal__frame-wrap {
+      position: relative;
+      padding-top: 56.25%;
+      background: #000;
+    }
+
+    .students-video-modal__frame-wrap iframe {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: 0;
       display: block;
+    }
+
+    .students-module__download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .students-module__download i {
+      font-size: 0.85rem;
+      color: var(--cyan);
     }
 
     .students-resources {
@@ -299,6 +616,14 @@
 
       .students-portal__modules {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .students-progress-header__bar-wrap {
+        flex-wrap: wrap;
+      }
+
+      .students-progress-header__text {
+        width: 100%;
       }
     }
 
@@ -394,54 +719,263 @@
     <section class="students-portal" id="studentsPortal" aria-hidden="true">
       <div class="students-portal__inner">
         <div>
-          <h2 class="students-portal__heading">Your Modules</h2>
+          <div class="students-progress-header" id="progressHeader">
+            <h2 class="students-progress-header__title">Welcome back</h2>
+            <p class="students-progress-header__sub">Continue your progress in Magistrate Court Masterclass</p>
+            <div class="students-progress-header__bar-wrap">
+              <div class="students-progress-header__bar">
+                <div class="students-progress-header__bar-fill" id="progressBarFill" style="width: 0%;"></div>
+              </div>
+              <span class="students-progress-header__text" id="progressText">Progress: 0 of 12 lessons completed</span>
+            </div>
+            <div class="students-progress-header__actions">
+              <button type="button" class="students-progress-header__continue" id="continueWatchingBtn" disabled>
+                <i class="fa-solid fa-play" aria-hidden="true"></i>
+                <span>Continue watching</span>
+              </button>
+            </div>
+          </div>
+
+          <h2 class="students-portal__heading">Your Lessons</h2>
 
           <div class="students-portal__modules">
-            <article class="students-module">
-              <div class="students-module__label">Module 1</div>
-              <h3 class="students-module__title">Foundations of Magistrate Court</h3>
+            <article class="students-module" data-episode="1">
+              <div class="students-module__label">Episode 1</div>
+              <h3 class="students-module__title">To Talk Or Not To Talk</h3>
               <p class="students-module__description">
-                Get oriented to the Magistrate Court process, key terms, and what to expect from start to finish.
+                Understand when speaking helps your case—and when staying silent protects you.
               </p>
-              <div class="students-module__video">
-                <iframe
-                  src="https://player.vimeo.com/video/000000000"
-                  title="Module 1 video placeholder"
-                  loading="lazy"
-                  allowfullscreen
-                ></iframe>
+              <div class="students-module__video js-video-thumb" data-video-id="QHkSN_v5TU4" data-episode="1" role="button" tabindex="0" title="Play Episode 1">
+                <div class="students-module__video-thumb" style="background-image: url(https://img.youtube.com/vi/QHkSN_v5TU4/hqdefault.jpg);"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="1">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
               </div>
             </article>
 
-            <article class="students-module">
-              <div class="students-module__label">Module 2</div>
-              <h3 class="students-module__title">Evidence, Strategy &amp; Preparation</h3>
+            <article class="students-module" data-episode="2">
+              <div class="students-module__label">Episode 2</div>
+              <h3 class="students-module__title">Interpreting Your Incident Report</h3>
               <p class="students-module__description">
-                Learn how to gather, organize, and present evidence in a way that supports your story in court.
+                Learn how to actually read and decode an incident report so you know what it says about you.
               </p>
-              <div class="students-module__video">
-                <iframe
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                  title="Module 2 video placeholder"
-                  loading="lazy"
-                  allowfullscreen
-                ></iframe>
+              <div class="students-module__video js-video-thumb" data-video-id="O5ApA5MLNTs" data-episode="2" role="button" tabindex="0" title="Play Episode 2">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="2">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
               </div>
             </article>
 
-            <article class="students-module">
-              <div class="students-module__label">Module 3</div>
-              <h3 class="students-module__title">Trial Day &amp; Next Steps</h3>
+            <article class="students-module" data-episode="3">
+              <div class="students-module__label">Episode 3</div>
+              <h3 class="students-module__title">Protecting Your Case &amp; Gathering Evidence</h3>
               <p class="students-module__description">
-                Walk through a realistic trial day checklist so you can show up clear, calm, and ready.
+                Step‑by‑step approach to preserving evidence and building a proof file that actually helps in court.
               </p>
-              <div class="students-module__video">
-                <iframe
-                  src="https://player.vimeo.com/video/000000001"
-                  title="Module 3 video placeholder"
-                  loading="lazy"
-                  allowfullscreen
-                ></iframe>
+              <div class="students-module__video js-video-thumb" data-video-id="giWuvdgiZOQ" data-episode="3" role="button" tabindex="0" title="Play Episode 3">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="3">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="4">
+              <div class="students-module__label">Episode 4</div>
+              <h3 class="students-module__title">Perfect Words For Perfect Impact</h3>
+              <p class="students-module__description">
+                Craft clear, persuasive language so your judge understands exactly what happened and what you’re asking for.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="sEptMCE-e8k" data-episode="4" role="button" tabindex="0" title="Play Episode 4">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="4">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="5">
+              <div class="students-module__label">Episode 5</div>
+              <h3 class="students-module__title">Pre-suit Negotiation</h3>
+              <p class="students-module__description">
+                Learn how to negotiate confidently before anyone files a case, and when settlement makes sense.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="dKoG2gaqMaI" data-episode="5" role="button" tabindex="0" title="Play Episode 5">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="5">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="6">
+              <div class="students-module__label">Episode 6</div>
+              <h3 class="students-module__title">Standing Up To Bullies</h3>
+              <p class="students-module__description">
+                Strategies for responding to intimidation, threats, or pressure—without losing your case or your cool.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="IXbc5gRaXJs" data-episode="6" role="button" tabindex="0" title="Play Episode 6">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="6">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="7">
+              <div class="students-module__label">Episode 7</div>
+              <h3 class="students-module__title">Trial Time</h3>
+              <p class="students-module__description">
+                A walkthrough of what actually happens on trial day so nothing catches you off guard.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="nMbZYZPZ3Aw" data-episode="7" role="button" tabindex="0" title="Play Episode 7">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="7">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="8">
+              <div class="students-module__label">Episode 8</div>
+              <h3 class="students-module__title">Opening Statements</h3>
+              <p class="students-module__description">
+                How to open your case with a clear, simple story that frames the evidence in your favor.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="wyFQpwmS20s" data-episode="8" role="button" tabindex="0" title="Play Episode 8">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="8">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="9">
+              <div class="students-module__label">Episode 9</div>
+              <h3 class="students-module__title">Mastering Cross Examination</h3>
+              <p class="students-module__description">
+                Techniques for asking focused questions that reveal the truth and expose weak testimony.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="1TXDrOIYZcs" data-episode="9" role="button" tabindex="0" title="Play Episode 9">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="9">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="10">
+              <div class="students-module__label">Episode 10</div>
+              <h3 class="students-module__title">Cross Examination</h3>
+              <p class="students-module__description">
+                Go deeper on cross techniques, including how to stay in control when witnesses resist.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="lQ0o_auulZo" data-episode="10" role="button" tabindex="0" title="Play Episode 10">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="10">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="11">
+              <div class="students-module__label">Episode 11</div>
+              <h3 class="students-module__title">Anticipating Objections</h3>
+              <p class="students-module__description">
+                Spot common objections before they happen and learn how to respond when the other side objects.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="YOUR_EPISODE_11_VIDEO_ID" data-episode="11" role="button" tabindex="0" title="Play Episode 11">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="11">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="students-module" data-episode="12">
+              <div class="students-module__label">Episode 12</div>
+              <h3 class="students-module__title">Closing Statements</h3>
+              <p class="students-module__description">
+                Learn how to finish strong by connecting the dots for the judge and clearly asking for the result you want.
+              </p>
+              <div class="students-module__video js-video-thumb" data-video-id="YOUR_EPISODE_12_VIDEO_ID" data-episode="12" role="button" tabindex="0" title="Play Episode 12">
+                <div class="students-module__video-thumb"></div>
+                <span class="students-module__video-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+                <div class="students-module__locked-overlay"><span class="students-module__locked-icon"><i class="fa-solid fa-lock"></i></span><span class="students-module__locked-text js-locked-text"></span></div>
+              </div>
+              <div class="students-module__actions">
+                <button type="button" class="students-module__complete-btn js-mark-complete" data-episode="12">Mark as complete</button>
+                <a href="#" class="students-module__download" aria-disabled="true">
+                  <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                  <span>Download lesson summary</span>
+                </a>
               </div>
             </article>
           </div>
@@ -486,6 +1020,19 @@
         </aside>
       </div>
     </section>
+
+    <!-- Video popout modal (used when play is clicked on a lesson thumbnail) -->
+    <div class="students-video-modal" id="videoModal" aria-hidden="true" aria-label="Video player">
+      <div class="students-video-modal__backdrop" id="videoModalBackdrop"></div>
+      <div class="students-video-modal__box">
+        <button type="button" class="students-video-modal__close" id="videoModalClose" aria-label="Close video">
+          <i class="fa-solid fa-times" aria-hidden="true"></i>
+        </button>
+        <div class="students-video-modal__frame-wrap">
+          <iframe id="videoModalFrame" src="" title="Video player" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer class="footer footer--full">
@@ -535,6 +1082,189 @@
   <script src="assets/js/main.js"></script>
   <script>
     (function () {
+      var modal = document.getElementById('videoModal');
+      var frame = document.getElementById('videoModalFrame');
+      var backdrop = document.getElementById('videoModalBackdrop');
+      var closeBtn = document.getElementById('videoModalClose');
+      var PLACEHOLDER = 'YOUR_EPISODE';
+      var VIDEO_ID_PLACEHOLDER = 'VIDEO_ID';
+
+      function isRealVideoId(id) {
+        if (!id || typeof id !== 'string') return false;
+        var t = id.trim();
+        return t.indexOf(PLACEHOLDER) === -1 && t.indexOf(VIDEO_ID_PLACEHOLDER) === -1 && /^[a-zA-Z0-9_-]+$/.test(t);
+      }
+
+      // Set thumbnail from YouTube when data-video-id is a real ID
+      document.querySelectorAll('.js-video-thumb').forEach(function (el) {
+        var id = el.getAttribute('data-video-id');
+        var thumb = el.querySelector('.students-module__video-thumb');
+        if (thumb && isRealVideoId(id)) {
+          thumb.style.backgroundImage = 'url(https://img.youtube.com/vi/' + id + '/hqdefault.jpg)';
+        }
+      });
+
+      function openModal(videoId) {
+        if (!modal || !frame || !isRealVideoId(videoId)) return;
+        frame.setAttribute('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1');
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        if (!modal || !frame) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        frame.setAttribute('src', '');
+      }
+
+      document.querySelectorAll('.js-video-thumb').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var card = el.closest('.students-module');
+          if (card && card.classList.contains('students-module--locked')) return;
+          var ep = el.getAttribute('data-episode');
+          if (ep) {
+            try {
+              localStorage.setItem('mcm_last_watched', String(ep));
+            } catch (e) {}
+            if (typeof window.mcmRefreshLessonState === 'function') window.mcmRefreshLessonState();
+          }
+          var id = el.getAttribute('data-video-id');
+          if (isRealVideoId(id)) openModal(id);
+        });
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            var card = el.closest('.students-module');
+            if (card && card.classList.contains('students-module--locked')) return;
+            var ep = el.getAttribute('data-episode');
+            if (ep) {
+              try {
+                localStorage.setItem('mcm_last_watched', String(ep));
+              } catch (e) {}
+              if (typeof window.mcmRefreshLessonState === 'function') window.mcmRefreshLessonState();
+            }
+            var id = el.getAttribute('data-video-id');
+            if (isRealVideoId(id)) openModal(id);
+          }
+        });
+      });
+
+      if (backdrop) backdrop.addEventListener('click', closeModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) closeModal();
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var TOTAL = 12;
+
+      function getCompleted() {
+        try {
+          var s = localStorage.getItem('mcm_completed');
+          if (!s) return [];
+          var a = JSON.parse(s);
+          return Array.isArray(a) ? a : [];
+        } catch (e) { return []; }
+      }
+
+      function setCompleted(arr) {
+        try {
+          localStorage.setItem('mcm_completed', JSON.stringify(arr));
+        } catch (e) {}
+      }
+
+      function getLastWatched() {
+        try {
+          var n = parseInt(localStorage.getItem('mcm_last_watched'), 10);
+          return (n >= 1 && n <= TOTAL) ? n : 1;
+        } catch (e) { return 1; }
+      }
+
+      function isUnlocked(ep) {
+        var n = parseInt(ep, 10);
+        if (n <= 1) return true;
+        return getCompleted().indexOf(n - 1) !== -1;
+      }
+
+      function refreshProgress() {
+        var completed = getCompleted();
+        var count = completed.length;
+        var pct = Math.round((count / TOTAL) * 100);
+        var bar = document.getElementById('progressBarFill');
+        var text = document.getElementById('progressText');
+        var btn = document.getElementById('continueWatchingBtn');
+        if (bar) bar.style.width = pct + '%';
+        if (text) text.textContent = 'Progress: ' + count + ' of ' + TOTAL + ' lessons completed';
+        var last = getLastWatched();
+        var hasWatched = localStorage.getItem('mcm_last_watched') != null;
+        if (btn) {
+          btn.disabled = !hasWatched;
+          btn.onclick = function () {
+            if (btn.disabled) return;
+            var card = document.querySelector('.students-module[data-episode="' + last + '"]');
+            if (card) {
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              var thumb = card.querySelector('.js-video-thumb');
+              if (thumb) thumb.focus();
+            }
+          };
+        }
+      }
+
+      function refreshLessonStates() {
+        document.querySelectorAll('.students-module[data-episode]').forEach(function (card) {
+          var ep = parseInt(card.getAttribute('data-episode'), 10);
+          var unlocked = isUnlocked(ep);
+          var completed = getCompleted().indexOf(ep) !== -1;
+          if (unlocked) {
+            card.classList.remove('students-module--locked');
+          } else {
+            card.classList.add('students-module--locked');
+            var txt = card.querySelector('.js-locked-text');
+            if (txt) txt.textContent = 'Complete Episode ' + (ep - 1) + ' first';
+          }
+          var btn = card.querySelector('.js-mark-complete[data-episode="' + ep + '"]');
+          if (btn) {
+            if (completed) {
+              btn.classList.add('is-complete');
+              btn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Complete';
+            } else {
+              btn.classList.remove('is-complete');
+              btn.innerHTML = 'Mark as complete';
+            }
+          }
+        });
+        refreshProgress();
+      }
+
+      window.mcmRefreshLessonState = refreshLessonStates;
+
+      document.querySelectorAll('.js-mark-complete').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var ep = parseInt(btn.getAttribute('data-episode'), 10);
+          if (!ep || ep < 1 || ep > TOTAL) return;
+          var arr = getCompleted();
+          if (arr.indexOf(ep) !== -1) return;
+          arr.push(ep);
+          arr.sort(function (a, b) { return a - b; });
+          setCompleted(arr);
+          refreshLessonStates();
+        });
+      });
+
+      if (document.getElementById('studentsPortal')) {
+        refreshLessonStates();
+      }
+    })();
+  </script>
+  <script>
+    (function () {
       // Single source of truth for the access code used across the site
       var ACCESS_CODE = "MC2026";
 
@@ -549,12 +1279,18 @@
       }
 
       function revealPortal() {
+        try {
+          localStorage.setItem('mcm_access_granted', 'true');
+        } catch (e) {}
         if (gate) {
           gate.style.display = 'none';
         }
         if (portal) {
           portal.style.display = 'block';
           portal.setAttribute('aria-hidden', 'false');
+        }
+        if (typeof window.mcmRefreshLessonState === 'function') {
+          window.mcmRefreshLessonState();
         }
       }
 
