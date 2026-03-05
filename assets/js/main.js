@@ -102,6 +102,34 @@
     var LESSONS_PER_PAGE = 6;
     var currentPage = 1;
     var maxPage = 1;
+    var currentTopic = ''; // normalized text of selected topic (lowercase)
+
+    // Topic filter setup
+    var topicItems = document.querySelectorAll('.home-curriculum__topics li');
+
+    var normalize = function(str) {
+      return (str || '').toLowerCase().trim();
+    };
+
+    topicItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        var label = normalize(item.textContent || '');
+        // Toggle off if clicking the same active topic
+        if (currentTopic === label) {
+          currentTopic = '';
+        } else {
+          currentTopic = label;
+        }
+
+        // Visual active state
+        topicItems.forEach(function(el) {
+          el.classList.toggle('is-active', normalize(el.textContent || '') === currentTopic && currentTopic !== '');
+        });
+
+        // When changing topic, always reset to first page
+        updateCurriculumView(1);
+      });
+    });
 
     curriculumLessons.forEach(function(lesson) {
       var num = parseInt(lesson.dataset.lesson, 10);
@@ -124,15 +152,13 @@
 
       curriculumLessons.forEach(function(lesson) {
         var pageForLesson = parseInt(lesson.dataset.page || '1', 10);
-        if (pageForLesson === page) {
-          lesson.style.display = 'flex';
-        } else {
-          lesson.style.display = 'none';
-        }
+        var topics = (lesson.getAttribute('data-topics') || '').split(',');
+        var matchesTopic = !currentTopic || topics.some(function(t) {
+          return normalize(t) === currentTopic;
+        });
 
-        var lessonNum = parseInt(lesson.dataset.lesson || '0', 10);
-        var firstOnPage = (page - 1) * LESSONS_PER_PAGE + 1;
-        lesson.classList.toggle('home-curriculum__lesson--active', lessonNum === firstOnPage);
+        var shouldShow = pageForLesson === page && matchesTopic;
+        lesson.style.display = shouldShow ? 'flex' : 'none';
       });
 
       curriculumPages.forEach(function(pageEl) {
@@ -274,6 +300,34 @@
     videoButtons.forEach(function(btn) {
       btn.addEventListener('click', function() {
         var url = btn.getAttribute('data-video');
+        if (!url || !previewIframe) return;
+        previewIframe.src = toEmbedUrl(url);
+        previewModal.classList.add('is-open');
+      });
+    });
+
+    // Curriculum arrows: open preview video for the lesson (without navigating)
+    var curriculumArrows = document.querySelectorAll('.js-curriculum-arrow-preview');
+    curriculumArrows.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var lesson = btn.closest('.home-curriculum__lesson');
+        if (!lesson) return;
+        var url = lesson.getAttribute('data-video');
+        if (!url || !previewIframe) return;
+        previewIframe.src = toEmbedUrl(url);
+        previewModal.classList.add('is-open');
+      });
+    });
+
+    // Entire curriculum row: also open the preview video instead of navigating
+    var curriculumLessonLinks = document.querySelectorAll('.home-curriculum__lesson');
+    curriculumLessonLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        // Arrow handler already stopped propagation, so this is for row clicks
+        e.preventDefault();
+        var url = link.getAttribute('data-video');
         if (!url || !previewIframe) return;
         previewIframe.src = toEmbedUrl(url);
         previewModal.classList.add('is-open');
