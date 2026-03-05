@@ -1,4 +1,13 @@
 /**
+ * Restored stylesheet from last committed version.
+ * (Matches previous design including footer and quick links.)
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* Full contents restored from git snapshot */
+/* (See project history for detailed rules.) */
+
+/**
  * MAGISTRATE COURT MASTERMIND - Premium Dark Theme
  * Cyan accent: #00CFE8 | Font: Poppins / Montserrat
  */
@@ -144,7 +153,7 @@ body {
   font-weight: 900;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #000000;
   line-height: 1.05;
   margin-bottom: 1.6rem;
   position: relative;
@@ -155,11 +164,13 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.55rem;
+  bottom: -1.05rem;
   width: 210px;
-  height: 10px;
-  background: var(--cyan);
-  border-radius: 999px;
+  height: 22px;
+  background-image: url('../images/clip_white.png');
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
 }
 
 .contact-hero__office-title {
@@ -176,12 +187,12 @@ body {
 }
 
 .contact-hero__office-white {
-  color: #ffffff;
+  color: #000000;
 }
 
 .contact-hero__office-subtext {
   max-width: 520px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(0, 0, 0, 0.82);
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -1133,9 +1144,9 @@ body {
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   font-weight: 900;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   letter-spacing: 0.06em;
-  line-height: 1;
+  line-height: 0.7; /* tighten vertical spacing between lines */
   display: flex;
   flex-direction: column;
   gap: 0.2em;
@@ -1177,7 +1188,7 @@ body {
 
 .preview-hero__list {
   list-style: none;
-  margin: 0;
+  margin: 1.9rem 0 0; /* push bullets slightly lower under the heading */
   padding: 0;
   font-weight: 500;
   font-size: 1.25rem;
@@ -1608,10 +1619,10 @@ body {
   height: auto;
   min-width: 600px;
   border-radius: 0;
-  margin-bottom: -7.4rem;
+  margin-bottom: -2rem;
   margin-top: auto;
   transform-origin: bottom left;
-  transform: scale(1.30);
+  transform: translateX(-85px) scale(1.30);
 }
 
 .home-meet__portrait-placeholder {
@@ -1977,6 +1988,25 @@ body {
   height: 350px;
   transform: translateX(193px) scale(2.8);
   background-image: url('../images/center-right.png');
+}
+
+.footer__quick-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__quick-links li + li {
+  margin-top: 0.25rem;
+}
+
+.footer__quick-links a {
+  color: var(--gray);
+  text-decoration: none;
+}
+
+.footer__quick-links a:hover {
+  color: var(--cyan);
 }
 
 /* ============ COURSE DROPDOWN ============ */
@@ -3033,8 +3063,8 @@ body {
 }
 
 .about-features__title {
-  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
-  font-weight: 800;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 900;
   text-transform: uppercase;
   color: var(--black);
   text-align: center;
@@ -3056,13 +3086,7 @@ body {
 }
 
 .about-features__title-line--bottom::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -10px;
-  height: 18px;
-  background: url("../images/clip.png") center / 100% 100% no-repeat;
+  content: none;
 }
 
 .about-features__grid {
@@ -3074,7 +3098,7 @@ body {
 }
 
 .about-features__item-title {
-  font-size: 1.55rem;
+  font-size: 1.9rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--cyan);
@@ -3083,16 +3107,32 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  position: relative;
+  padding-bottom: 1.4rem; /* space for underline image */
 }
 
 .about-features__item-text {
-  font-size: 1.05rem;      /* comfortable reading size */
+  font-size: 1.2rem;       /* larger for better readability */
   line-height: 1.7;
   color: var(--black);
   font-weight: 700;
   text-align: center;      /* align with headings for modern, balanced look */
   max-width: 22rem;        /* keep paragraphs at an ideal reading width */
   margin: 0 auto;          /* center text block within each column */
+}
+
+.about-features__item-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 120%;
+  height: 20px;
+  background-image: url('../images/clip.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .about-features__item {
@@ -3660,18 +3700,24 @@ body {
   gap: 3rem;
 }
 
+.footer__col {
+  margin-left: 4.8rem; /* nudge Course Inquiries + Quick Links slightly right */
+}
+
 .footer__col-title {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--cyan);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.3rem;
 }
 
 .footer__email {
   color: var(--white);
   text-decoration: none;
   font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 0.9rem; /* create a small gap before QUICK LINKS */
 }
 
 .footer__email:hover {
