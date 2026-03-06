@@ -985,7 +985,7 @@ body {
   margin-right: 0;
   margin-top: 0;
   margin-bottom: -32px;
-  transform: translateX(-105px) scale(1.1);
+  transform: translateX(-105px) scale(1.5);
   transform-origin: bottom center;
 }
 
