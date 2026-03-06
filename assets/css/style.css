@@ -1614,6 +1614,11 @@ body {
   align-items: flex-end;
 }
 
+.home-meet__right {
+  align-self: flex-start;
+  margin-top: -2.3rem;
+}
+
 .home-meet__portrait {
   width: 100%;
   max-width: none;
@@ -3105,13 +3110,14 @@ body {
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--black);
-  margin-bottom: 0.75rem;
-  min-height: 4rem;
+  margin-bottom: 0.5rem;
+  min-height: 3.5rem;
+  line-height: 1.15;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   position: relative;
-  padding-bottom: 1.4rem; /* space for underline image */
+  padding-bottom: 1rem; /* space for underline image, slightly tighter */
 }
 
 .about-features__item-text {
@@ -3903,6 +3909,11 @@ body {
 
   .home-meet__left {
     order: -1;
+  }
+
+  .home-meet__right {
+    align-self: flex-start;
+    margin-top: -1rem;
   }
 
   .home-curriculum__grid {
