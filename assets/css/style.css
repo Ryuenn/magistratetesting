@@ -940,6 +940,7 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   color: var(--white);
+  line-height: 1.05;
 }
 
 .home-discover__line {
