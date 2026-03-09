@@ -4813,6 +4813,10 @@ body.is-nav-open {
     display: none;
   }
 
+  .header__cta {
+    display: none;
+  }
+
   .header__toggle {
     display: inline-block;
   }
