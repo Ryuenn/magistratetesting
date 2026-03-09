@@ -29,9 +29,55 @@
     }, 5000);
   }
 
-  // Mobile nav toggle (optional - can expand for hamburger menu)
-  // Current layout hides nav on mobile; add hamburger if desired
-  
+  // Mobile nav: hamburger toggle + body scroll lock
+  var header = document.querySelector('.header');
+  var toggle = document.querySelector('.header__toggle');
+  var mobileMenu = document.querySelector('.header__mobile-menu');
+  var primaryNav = document.getElementById('primary-navigation');
+
+  var closeMobileNav = function() {
+    if (!header || !toggle) return;
+    header.classList.remove('header--nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('is-nav-open');
+    if (mobileMenu) {
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+  };
+
+  if (toggle && header) {
+    if (mobileMenu) {
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+
+    toggle.addEventListener('click', function() {
+      var isOpen = header.classList.toggle('header--nav-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.classList.toggle('is-nav-open', isOpen);
+      if (mobileMenu) {
+        mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(evt) {
+      if (evt.key === 'Escape' && header.classList.contains('header--nav-open')) {
+        closeMobileNav();
+      }
+    });
+
+    // Close when clicking a nav link (mobile menu)
+    if (mobileMenu) {
+      mobileMenu.addEventListener('click', function(e) {
+        var link = e.target.closest('a');
+        if (!link) return;
+        if (window.innerWidth <= 900) {
+          closeMobileNav();
+        }
+      });
+    }
+  }
+
   // Ensure dropdown works on touch devices
   var dropdowns = document.querySelectorAll('.nav-dropdown');
   dropdowns.forEach(function(dd) {

@@ -44,6 +44,11 @@ body {
   overflow-x: hidden;
 }
 
+/* When mobile nav is open, prevent background scrolling */
+body.is-nav-open {
+  overflow: hidden;
+}
+
 /* Global page loader */
 .page-loader {
   position: fixed;
@@ -449,6 +454,52 @@ body {
 
 .header__cta:hover {
   background: var(--cyan-hover);
+}
+
+/* Mobile nav toggle (hamburger) - hidden on desktop */
+.header__toggle {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 32px;
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.header__toggle-line {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--white);
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease, bottom 0.2s ease;
+}
+
+.header__toggle-line:first-child {
+  top: 10px;
+}
+
+.header__toggle-line:last-child {
+  bottom: 10px;
+}
+
+.header--nav-open .header__toggle-line:first-child {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.header--nav-open .header__toggle-line:last-child {
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Mobile nav menu panel */
+.header__mobile-menu {
+  display: none;
 }
 
 /* ============ HERO SECTION (Figma match) ============ */
@@ -3969,6 +4020,72 @@ body {
   .header__nav {
     display: none;
   }
+
+  .header__toggle {
+    display: inline-block;
+  }
+
+  .header__mobile-menu {
+    position: fixed;
+    inset: 0 0 auto 0;
+    top: 64px;
+    background: var(--black);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: none;
+    padding: 1.25rem 1.5rem 1.75rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    z-index: 999;
+  }
+
+  .header--nav-open .header__mobile-menu {
+    display: block;
+  }
+
+  .header__mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .header__mobile-list {
+    list-style: none;
+    margin: 0 0 0.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .header__mobile-list a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  }
+
+  .header__mobile-list a:hover {
+    color: var(--cyan);
+  }
+
+  .header__mobile-cta {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background: var(--cyan);
+    color: var(--black);
+    padding: 0.9rem 1rem;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .header__mobile-cta:hover {
+    background: var(--cyan-hover);
+  }
 }
 
 @media (max-width: 600px) {
@@ -3997,5 +4114,85 @@ body {
 
   .pricing-card__price {
     font-size: 2.5rem;
+  }
+
+  /* Tighten hero spacing & scale imagery for small screens */
+  .hero__heading {
+    font-size: 2.2rem;
+  }
+
+  .hero__subtext {
+    font-size: 0.95rem;
+  }
+
+  .hero__person {
+    transform: translateY(40px) scale(1.0);
+    right: -10%;
+  }
+
+  /* Ensure key CTAs are easy to tap */
+  .hero__btn,
+  .home-prepared__btn,
+  .home-discover__btn,
+  .home-cta__btn,
+  .course-product-card__btn,
+  .footer__contact-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Contact form & cards */
+  .contact-hero {
+    padding: 3rem 1.25rem 3.5rem;
+  }
+
+  .contact-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-form-card {
+    padding: 1.25rem 1rem 1.1rem;
+  }
+
+  /* Home feature sections spacing */
+  .home-prepared__left,
+  .home-prepared__right {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .home-video,
+  .home-preview,
+  .home-topics,
+  .home-discover,
+  .home-curriculum,
+  .home-cta {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Prevent wide transforms from causing cramped layouts */
+  .home-discover__img {
+    transform: none;
+    max-width: min(320px, 80vw);
+    margin: 0 auto -24px;
+  }
+
+  .home-meet__portrait {
+    min-width: 0;
+    max-width: min(360px, 90vw);
+    transform: none;
+    margin: 0 auto;
+  }
+
+  /* Footer columns stack more comfortably */
+  .footer__main {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer__links-wrap {
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }
