@@ -621,7 +621,7 @@ body.is-nav-open {
   object-fit: contain;
   object-position: bottom right;
   transform-origin: bottom right;
-  transform: translateY(72px) scale(1.16);
+  transform: translateY(72px) scale(1.05);
   pointer-events: none;
 }
 
@@ -964,6 +964,7 @@ body.is-nav-open {
 }
 
 /* Discover How To Prepare */
+/* Discover How To Prepare */
 .home-discover {
   position: relative;
   background: var(--white);
@@ -1000,7 +1001,10 @@ body.is-nav-open {
 }
 
 .home-discover__left {
-  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .home-discover__title {
@@ -1008,9 +1012,6 @@ body.is-nav-open {
   font-weight: 800;
   text-transform: uppercase;
   color: var(--white);
-  line-height: 1.05;
-  position: relative;
-  left: 50px; /* visual nudge right without affecting layout */
 }
 
 .home-discover__line {
@@ -1030,8 +1031,6 @@ body.is-nav-open {
 .home-discover__btn {
   display: inline-block;
   margin-top: 1.5rem;
-  position: relative;
-  left: 47px; /* keep button aligned with shifted title */
   background: var(--cyan);
   color: var(--black);
   padding: 1rem 2.25rem;
@@ -1045,19 +1044,20 @@ body.is-nav-open {
 }
 
 .home-discover__right {
-  position: relative;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
   align-items: flex-end;
+  gap: 0.75rem;
 }
 
 .home-discover__img {
-  max-width: 1000px;
+  max-height: 500px;
   width: auto;
   margin-right: 0;
   margin-top: 0;
-  margin-bottom: -32px;
-  transform: translateX(-85px) scale(1.5);
+  margin-bottom: -68px;
+  transform: translate(-225px, -35px) scale(1.5);
   transform-origin: bottom center;
 }
 
@@ -1693,15 +1693,17 @@ body.is-nav-open {
 }
 
 .home-meet__portrait {
-  width: 100%;
-  max-width: none;
+  max-height: 800px;
   height: auto;
-  min-width: 600px;
+  width: auto;
+  max-width: 100%;
   border-radius: 0;
-  margin-bottom: -3.7rem; /* nudge portrait slightly lower */
+  margin-bottom: 0;
   margin-top: auto;
-  transform-origin: bottom left;
-  transform: translateX(-160px) scale(1.30);
+  object-fit: contain;
+  object-position: center bottom;
+  transform-origin: center bottom;
+  transform: translate(-14%, 14%) scale(1.32);
 }
 
 .home-meet__portrait-placeholder {
