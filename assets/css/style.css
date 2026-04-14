@@ -612,7 +612,7 @@ body.is-nav-open {
 /* Home hero person cutout */
 .hero__person {
   position: absolute;
-  z-index: 0; /* keep hero content and notices above the cutout */
+  z-index: 0;
   bottom: 0;
   right: 0;
   height: 100%;
@@ -621,7 +621,7 @@ body.is-nav-open {
   object-fit: contain;
   object-position: bottom right;
   transform-origin: bottom right;
-  transform: translateY(80px) scale(1.17);
+  transform: translateY(72px) scale(1.16);
   pointer-events: none;
 }
 
