@@ -621,7 +621,7 @@ body.is-nav-open {
   object-fit: contain;
   object-position: bottom right;
   transform-origin: bottom right;
-  transform: translateY(72px) scale(1.05);
+  transform: translateY(72px) scale(1.15);
   pointer-events: none;
 }
 
@@ -1057,7 +1057,7 @@ body.is-nav-open {
   margin-right: 0;
   margin-top: 0;
   margin-bottom: -68px;
-  transform: translate(-225px, -35px) scale(1.5);
+  transform: translate(-225px, -35px) scale(1);
   transform-origin: bottom center;
 }
 
