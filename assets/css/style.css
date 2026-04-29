@@ -1703,7 +1703,7 @@ body.is-nav-open {
   object-fit: contain;
   object-position: center bottom;
   transform-origin: center bottom;
-  transform: translate(-14%, 14%) scale(1.32);
+  transform: translate(-14%, 27.5%) scale(1.8);
 }
 
 .home-meet__portrait-placeholder {
