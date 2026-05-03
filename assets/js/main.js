@@ -268,7 +268,11 @@
 
       previewThumbs.forEach(function(thumb) {
         var pageForThumb = parseInt(thumb.dataset.page || '1', 10);
-        thumb.style.display = pageForThumb === page ? 'block' : 'none';
+        if (pageForThumb === page) {
+          thumb.style.removeProperty('display');
+        } else {
+          thumb.style.display = 'none';
+        }
       });
 
       previewPages.forEach(function(pageEl) {
