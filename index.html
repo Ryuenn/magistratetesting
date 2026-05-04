@@ -195,15 +195,15 @@
       <div class="home-topics__inner">
         <h2 class="home-topics__title">COURTROOM <span class="home-topics__title-accent">TOPICS</span></h2>
         <p class="home-topics__sub">Explore The Key Strategies Covered In The Magistrate Masterclass.</p>
-        <div class="home-topics__grid">
-          <span class="home-topics__pill">Small Claims</span>
-          <span class="home-topics__pill">Filing Process</span>
-          <span class="home-topics__pill">Evidence</span>
-          <span class="home-topics__pill">Negotiation</span>
-          <span class="home-topics__pill">Examination</span>
-          <span class="home-topics__pill">Procedure</span>
-          <span class="home-topics__pill">Objections</span>
-          <span class="home-topics__pill">Statements</span>
+        <div class="home-topics__grid home-topics__grid--checker" role="list">
+          <span class="home-topics__pill" role="listitem">Small Claims</span>
+          <span class="home-topics__pill" role="listitem">Filing Process</span>
+          <span class="home-topics__pill" role="listitem">Evidence</span>
+          <span class="home-topics__pill" role="listitem">Negotiation</span>
+          <span class="home-topics__pill" role="listitem">Statements</span>
+          <span class="home-topics__pill" role="listitem">Examination</span>
+          <span class="home-topics__pill" role="listitem">Procedure</span>
+          <span class="home-topics__pill" role="listitem">Objections</span>
         </div>
       </div>
     </section>
@@ -214,8 +214,8 @@
       <div class="home-discover__inner">
         <div class="home-discover__left">
           <h2 class="home-discover__title">
-            <span class="home-discover__line">DISCOVER HOW</span><br>
-            <span class="home-discover__line">TO <span class="home-discover__title-encircle">PREPARE</span> FOR</span><br>
+            <span class="home-discover__line">DISCOVER HOW</span>
+            <span class="home-discover__line">TO <span class="home-discover__title-encircle">PREPARE</span> FOR</span>
             <span class="home-discover__line">COURT</span>
           </h2>
           <a href="course.html" class="home-discover__btn">ENROLL NOW</a>
@@ -232,8 +232,20 @@
       <div class="home-meet__brush"></div>
       <div class="home-meet__inner">
         <div class="home-meet__left">
-          <img src="assets/images/ibrahimsuit.png" alt="Ibrahim Awad" class="home-meet__portrait" onerror="this.style.display='none'">
-          <div class="home-meet__portrait-placeholder"></div>
+          <div class="home-meet__portrait-frame">
+            <picture>
+              <source media="(max-width: 600px)" srcset="assets/images/ibrahimawad.png">
+              <img
+                src="assets/images/ibrahimsuit.png"
+                alt="Ibrahim Awad"
+                class="home-meet__portrait"
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              >
+            </picture>
+            <div class="home-meet__portrait-placeholder"></div>
+          </div>
         </div>
         <div class="home-meet__right">
           <h2 class="home-meet__title">
