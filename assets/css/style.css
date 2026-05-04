@@ -1425,17 +1425,38 @@ body.is-nav-open {
   transform: translateY(0);
   z-index: 0;
   pointer-events: none;
+  /* Feather PNG edges so the asset’s square bounds don’t read as a “box” */
+  -webkit-mask-image: radial-gradient(
+    ellipse 52% 52% at 50% 50%,
+    #000 0%,
+    #000 28%,
+    transparent 70%
+  );
+  mask-image: radial-gradient(
+    ellipse 52% 52% at 50% 50%,
+    #000 0%,
+    #000 28%,
+    transparent 70%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .preview-hero__right::before {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 60%;
-  background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.25) 0%, transparent 70%);
+  inset: 0;
+  /* Full-bleed soft highlight — avoids a straight seam from a partial-width layer */
+  background: radial-gradient(
+    ellipse 70% 85% at 68% 42%,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.08) 38%,
+    transparent 68%
+  );
   pointer-events: none;
+  z-index: 0;
 }
 
 .preview-hero__person {
@@ -6405,6 +6426,22 @@ body.is-nav-open {
     background-repeat: no-repeat !important;
     z-index: 0 !important;
     margin: 0 !important;
+    -webkit-mask-image: radial-gradient(
+      ellipse 52% 52% at 50% 50%,
+      #000 0%,
+      #000 28%,
+      transparent 70%
+    ) !important;
+    mask-image: radial-gradient(
+      ellipse 52% 52% at 50% 50%,
+      #000 0%,
+      #000 28%,
+      transparent 70%
+    ) !important;
+    -webkit-mask-size: 100% 100% !important;
+    mask-size: 100% 100% !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
   }
 
   .preview-hero__right::before {
@@ -6566,6 +6603,22 @@ body.is-nav-open {
     background-position: center !important;
     background-repeat: no-repeat !important;
     z-index: 0 !important;
+    -webkit-mask-image: radial-gradient(
+      ellipse 52% 52% at 50% 50%,
+      #000 0%,
+      #000 28%,
+      transparent 70%
+    ) !important;
+    mask-image: radial-gradient(
+      ellipse 52% 52% at 50% 50%,
+      #000 0%,
+      #000 28%,
+      transparent 70%
+    ) !important;
+    -webkit-mask-size: 100% 100% !important;
+    mask-size: 100% 100% !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
   }
 }
 /* ============ ABOUT US HERO MOBILE FIX ============ */
