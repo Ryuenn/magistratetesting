@@ -405,6 +405,8 @@
     var submitBtn = contactForm.querySelector('button[type="submit"]');
     var statusEl = contactForm.querySelector('.contact-form__status');
     var widget = contactForm.querySelector('.cf-turnstile');
+    var successPanel = contactForm.parentNode.querySelector('.contact-success');
+    var sendAnotherBtn = successPanel ? successPanel.querySelector('.contact-success__again') : null;
 
     function showStatus(ok, text) {
       if (!statusEl) return;
@@ -489,7 +491,14 @@
           restore();
           contactForm.reset();
           resetTurnstile();
-          showStatus(true, 'Thanks! Your message has been sent — we\'ll get back to you shortly.');
+          if (statusEl) statusEl.hidden = true;
+          if (successPanel) {
+            // Swap the form for the confirmation; the CSS animation runs on the class.
+            contactForm.classList.add('is-sent');
+            successPanel.classList.add('is-visible');
+          } else {
+            showStatus(true, 'Thanks! Your message has been sent — we\'ll get back to you shortly.');
+          }
         })
         .catch(function(error) {
           console.error('Contact form error:', error);
@@ -503,5 +512,15 @@
           );
         });
     });
+
+    if (sendAnotherBtn) {
+      sendAnotherBtn.addEventListener('click', function() {
+        successPanel.classList.remove('is-visible');
+        contactForm.classList.remove('is-sent');
+        resetTurnstile();
+        var firstField = contactForm.querySelector('[name="fullname"]');
+        if (firstField) firstField.focus();
+      });
+    }
   }
 })();

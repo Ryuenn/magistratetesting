@@ -373,6 +373,123 @@ body.is-nav-open {
   background: var(--cyan-hover);
 }
 
+.contact-form__submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* Success state: the form is swapped out for a confirmation once the message sends. */
+.contact-form.is-sent {
+  display: none;
+}
+
+.contact-success {
+  display: none;
+  text-align: center;
+  padding: 1.75rem 0.5rem 1rem;
+}
+
+.contact-success.is-visible {
+  display: block;
+  animation: contact-success-in 0.35s ease-out both;
+}
+
+.contact-success__badge {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 1.1rem;
+  border-radius: 50%;
+  background: rgba(0, 207, 232, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: contact-success-pop 0.45s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
+}
+
+.contact-success__check {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: contact-success-draw 0.4s 0.2s ease-out forwards;
+}
+
+.contact-success__title {
+  font-size: 1.2rem;
+  font-weight: 900;
+  margin-bottom: 0.4rem;
+}
+
+.contact-success__text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.65);
+  margin-bottom: 1.25rem;
+}
+
+.contact-success__again {
+  border: none;
+  background: none;
+  padding: 0.4rem 0.6rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.contact-success__again:hover {
+  border-bottom-color: var(--cyan);
+}
+
+@keyframes contact-success-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contact-success-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes contact-success-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-success.is-visible,
+  .contact-success__badge {
+    animation: none;
+  }
+
+  .contact-success__check {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (max-width: 980px) {
   .contact-hero__inner {
     grid-template-columns: 1fr;
