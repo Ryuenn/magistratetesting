@@ -93,20 +93,23 @@
             <h3 class="contact-form-card__title">Got a <span class="contact-form-card__accent">question?</span></h3>
             <p class="contact-form-card__subtext">Fill-up the form and message us your amazing question.</p>
 
-            <form class="contact-form" action="#" method="post">
+            <form class="contact-form" action="/api/contact" method="post">
+              <!-- Honeypot: hidden from people, tempting to bots. Anything typed here means the message is dropped. -->
+              <input type="text" name="website" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
               <label class="contact-form__field">
                 <span class="contact-form__label">Full Name</span>
-                <input type="text" name="fullName" placeholder="Full name" class="contact-form__input" autocomplete="name">
+                <input type="text" name="fullname" placeholder="Full name" class="contact-form__input" autocomplete="name" required>
               </label>
 
               <label class="contact-form__field">
                 <span class="contact-form__label">Email Address</span>
-                <input type="email" name="email" placeholder="Email Address" class="contact-form__input" autocomplete="email">
+                <input type="email" name="email" placeholder="Email Address" class="contact-form__input" autocomplete="email" required>
               </label>
 
               <label class="contact-form__field">
                 <span class="contact-form__label">Subject</span>
-                <select name="subject" class="contact-form__input">
+                <select name="topic" class="contact-form__input">
                   <option value="" selected disabled>Select Subject</option>
                   <option value="course">Course Inquiry</option>
                   <option value="billing">Billing</option>
@@ -116,10 +119,14 @@
 
               <label class="contact-form__field">
                 <span class="contact-form__label">Message</span>
-                <textarea name="message" rows="5" placeholder="Your Message" class="contact-form__input contact-form__textarea"></textarea>
+                <textarea name="message" rows="5" placeholder="Your Message" class="contact-form__input contact-form__textarea" required></textarea>
               </label>
 
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAEP7kU3y9sD9PE4Q" style="margin: 0.5rem 0"></div>
+
               <button type="submit" class="contact-form__submit">SUBMIT MESSAGE</button>
+
+              <p class="contact-form__status" role="status" aria-live="polite" hidden style="margin-top: 0.75rem; font-size: 0.9rem; font-weight: 700"></p>
             </form>
           </div>
         </div>
@@ -170,6 +177,7 @@
     </div>
   </footer>
 
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

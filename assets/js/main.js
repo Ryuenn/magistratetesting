@@ -396,4 +396,112 @@
       }
     });
   }
+
+  // Contact form -> /api/contact (same-origin serverless function).
+  // The endpoint verifies the Cloudflare Turnstile token before sending, and the
+  // token is single-use, so the widget is reset after every attempt.
+  var contactForm = document.querySelector('form.contact-form[action="/api/contact"]');
+  if (contactForm) {
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+    var statusEl = contactForm.querySelector('.contact-form__status');
+    var widget = contactForm.querySelector('.cf-turnstile');
+
+    function showStatus(ok, text) {
+      if (!statusEl) return;
+      statusEl.textContent = text;
+      statusEl.style.color = ok ? '#15803d' : '#b91c1c';
+      statusEl.hidden = false;
+    }
+
+    function resetTurnstile() {
+      if (!window.turnstile || typeof window.turnstile.reset !== 'function') return;
+      try {
+        if (widget) window.turnstile.reset(widget);
+        else window.turnstile.reset();
+      } catch (err) {
+        // A widget that never rendered has nothing to reset.
+      }
+    }
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (contactForm.getAttribute('data-sending') === 'true') return;
+
+      if (typeof contactForm.checkValidity === 'function' && !contactForm.checkValidity()) {
+        if (typeof contactForm.reportValidity === 'function') contactForm.reportValidity();
+        return;
+      }
+
+      var tokenField = contactForm.querySelector('[name="cf-turnstile-response"]');
+      var token = tokenField ? tokenField.value.trim() : '';
+      if (!token) {
+        showStatus(false, 'Please complete the verification check, then submit again.');
+        return;
+      }
+
+      function value(name) {
+        var field = contactForm.querySelector('[name="' + name + '"]');
+        return field ? field.value.trim() : '';
+      }
+
+      var payload = {
+        fullname: value('fullname'),
+        email: value('email'),
+        topic: value('topic'),
+        message: value('message'),
+        website: value('website'),
+        turnstileToken: token,
+        pageUrl: window.location.href
+      };
+
+      var originalLabel = submitBtn ? submitBtn.innerHTML : '';
+      contactForm.setAttribute('data-sending', 'true');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'SENDING…';
+      }
+      if (statusEl) statusEl.hidden = true;
+
+      function restore() {
+        contactForm.removeAttribute('data-sending');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalLabel;
+        }
+      }
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function(response) {
+          return response.json().catch(function() {
+            return null;
+          }).then(function(json) {
+            if (response.ok && json && json.ok === true) return json;
+            var err = new Error((json && json.error) || 'Form submission failed');
+            err.fromServer = !!(json && json.error);
+            throw err;
+          });
+        })
+        .then(function() {
+          restore();
+          contactForm.reset();
+          resetTurnstile();
+          showStatus(true, 'Thanks! Your message has been sent — we\'ll get back to you shortly.');
+        })
+        .catch(function(error) {
+          console.error('Contact form error:', error);
+          restore();
+          resetTurnstile();
+          showStatus(
+            false,
+            error && error.fromServer && error.message
+              ? error.message
+              : 'We couldn\'t send your message just now. Please try again, or email info@magistratecourtmastermind.com.'
+          );
+        });
+    });
+  }
 })();
