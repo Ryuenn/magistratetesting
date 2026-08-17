@@ -1,0 +1,10 @@
+# Magistrate Court Mastermind
+#
+# Crawling is allowed everywhere on purpose. The checkout, success, cancel and
+# student portal pages are kept out of search with <meta name="robots" content="noindex">
+# in their HTML -- blocking them here instead would stop crawlers reading that tag.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.magistratecourtmastermind.com/sitemap.xml
