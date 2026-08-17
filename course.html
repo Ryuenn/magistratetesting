@@ -21,7 +21,7 @@
     </div>
   </div>
   <header class="header">
-    <a href="index.html" class="header__logo">
+    <a href="/" class="header__logo">
       <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="header__logo-img">
     </a>
     <button
@@ -37,24 +37,24 @@
     </button>
     <nav>
       <ul class="header__nav" id="primary-navigation">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="course.html" class="nav-active">COURSES</a></li>
-        <li><a href="masterclass-preview.html">MASTERCLASS PREVIEW</a></li>
-        <li><a href="about.html">ABOUT US</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/course" class="nav-active">COURSES</a></li>
+        <li><a href="/masterclass-preview">MASTERCLASS PREVIEW</a></li>
+        <li><a href="/about">ABOUT US</a></li>
+        <li><a href="/contact">CONTACT</a></li>
       </ul>
     </nav>
-    <a href="course.html" class="header__cta">ENROLL NOW</a>
+    <a href="/course" class="header__cta">ENROLL NOW</a>
     <div class="header__mobile-menu" data-nav-target="primary-navigation">
       <nav class="header__mobile-nav" aria-label="Primary">
         <ul class="header__mobile-list">
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="course.html">COURSES</a></li>
-          <li><a href="masterclass-preview.html">MASTERCLASS PREVIEW</a></li>
-          <li><a href="about.html">ABOUT US</a></li>
-          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/course">COURSES</a></li>
+          <li><a href="/masterclass-preview">MASTERCLASS PREVIEW</a></li>
+          <li><a href="/about">ABOUT US</a></li>
+          <li><a href="/contact">CONTACT</a></li>
         </ul>
-        <a href="course.html" class="header__mobile-cta">ENROLL NOW</a>
+        <a href="/course" class="header__mobile-cta">ENROLL NOW</a>
       </nav>
     </div>
   </header>
@@ -346,6 +346,37 @@
       </div>
     </section>
 
+    <!-- Shown instead of checkout while enrollment is not open yet -->
+    <div class="enroll-modal" aria-hidden="true">
+      <div class="enroll-modal__backdrop"></div>
+      <div
+        class="enroll-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="enrollModalTitle"
+        aria-describedby="enrollModalText"
+        tabindex="-1"
+      >
+        <button class="enroll-modal__close" type="button" aria-label="Close">&times;</button>
+
+        <div class="enroll-modal__badge" aria-hidden="true">
+          <svg class="enroll-modal__icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7.5v5l3 1.8"></path>
+          </svg>
+        </div>
+
+        <h2 class="enroll-modal__title" id="enrollModalTitle">Oops &mdash; available soon!</h2>
+        <p class="enroll-modal__text" id="enrollModalText">
+          Online enrollment isn&rsquo;t open just yet. If you&rsquo;re interested in the course,
+          send us a message and we&rsquo;ll get you sorted personally.
+        </p>
+
+        <a href="/contact#contact-form" class="enroll-modal__btn">MESSAGE US</a>
+        <button type="button" class="enroll-modal__dismiss">Maybe later</button>
+      </div>
+    </div>
+
   </main>
 
   <footer class="footer footer--full">
@@ -356,14 +387,14 @@
         <div class="footer__top-left">
           <span class="footer__connect">CONNECT WITH US</span>
         </div>
-        <a href="contact.html" class="footer__contact-btn">
+        <a href="/contact" class="footer__contact-btn">
           <span class="footer__contact-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></span>
           <span class="footer__contact-label">CONTACT US</span>
         </a>
       </div>
       <div class="footer__main">
         <div class="footer__brand">
-          <a href="index.html" class="footer__logo">
+          <a href="/" class="footer__logo">
             <img src="assets/images/magistratelogo1.png" alt="Magistrate Court Mastermind" class="footer__logo-img">
           </a>
           <p class="footer__tagline">A Structured, Attorney-Led Masterclass Designed To Help Individuals Confidently Navigate Georgia Magistrate Court.</p>
@@ -375,11 +406,11 @@
 
             <h4 class="footer__col-title">QUICK LINKS</h4>
             <ul class="footer__quick-links">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="course.html">Course</a></li>
-              <li><a href="masterclass-preview.html">Masterclass Preview</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/course">Course</a></li>
+              <li><a href="/masterclass-preview">Masterclass Preview</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -406,12 +437,8 @@
 
       document.getElementById('priceDisplay').textContent = PRICE;
 
-      var payBtn = document.getElementById('payBtn');
-
-      payBtn.addEventListener('click', function () {
-        // Demo-only: navigate to local checkout page (no real payment)
-        window.location.href = 'checkout.html';
-      });
+      // The Enroll button is handled in main.js: while enrolment is closed it
+      // opens the "available soon" modal instead of going to checkout.
     })();
   </script>
 </body>

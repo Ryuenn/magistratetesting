@@ -397,6 +397,80 @@
     });
   }
 
+  // Course page: enrolment is not open yet, so the Enroll button opens an
+  // "available soon" modal pointing at the contact form instead of checkout.
+  var enrollModal = document.querySelector('.enroll-modal');
+  if (enrollModal) {
+    var enrollDialog = enrollModal.querySelector('.enroll-modal__dialog');
+    var enrollBackdrop = enrollModal.querySelector('.enroll-modal__backdrop');
+    var enrollCloseBtns = enrollModal.querySelectorAll('.enroll-modal__close, .enroll-modal__dismiss');
+    var enrollTriggers = document.querySelectorAll('#payBtn, .js-enroll-soon');
+    var enrollLastFocus = null;
+
+    var enrollFocusable = function() {
+      return enrollDialog.querySelectorAll('a[href], button:not([disabled])');
+    };
+
+    // Remember the trigger explicitly: a mouse click does not focus a button in
+    // every browser, so document.activeElement is not reliable here.
+    var openEnrollModal = function(trigger) {
+      enrollLastFocus = trigger || document.activeElement;
+      enrollModal.classList.add('is-open');
+      enrollModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('is-nav-open'); // reuse the scroll lock
+      // Focus the dialog itself rather than a button, so screen readers announce
+      // the title and no control picks up a stray focus ring.
+      enrollDialog.focus();
+    };
+
+    var closeEnrollModal = function() {
+      if (!enrollModal.classList.contains('is-open')) return;
+      enrollModal.classList.remove('is-open');
+      enrollModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-nav-open');
+      if (enrollLastFocus && enrollLastFocus.focus) enrollLastFocus.focus();
+    };
+
+    enrollTriggers.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openEnrollModal(btn);
+      });
+    });
+
+    if (enrollBackdrop) {
+      enrollBackdrop.addEventListener('click', closeEnrollModal);
+    }
+    enrollCloseBtns.forEach(function(btn) {
+      btn.addEventListener('click', closeEnrollModal);
+    });
+
+    document.addEventListener('keydown', function(evt) {
+      if (!enrollModal.classList.contains('is-open')) return;
+
+      if (evt.key === 'Escape') {
+        closeEnrollModal();
+        return;
+      }
+
+      // Keep focus inside the dialog while it is open
+      if (evt.key === 'Tab') {
+        var items = enrollFocusable();
+        if (!items.length) return;
+        var first = items[0];
+        var last = items[items.length - 1];
+        var active = document.activeElement;
+        if (evt.shiftKey && (active === first || active === enrollDialog)) {
+          evt.preventDefault();
+          last.focus();
+        } else if (!evt.shiftKey && active === last) {
+          evt.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+
   // Contact form -> /api/contact (same-origin serverless function).
   // The endpoint verifies the Cloudflare Turnstile token before sending, and the
   // token is single-use, so the widget is reset after every attempt.

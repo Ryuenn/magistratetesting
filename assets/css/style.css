@@ -1878,6 +1878,185 @@ body.is-nav-open {
   cursor: pointer;
 }
 
+/* "Available soon" modal shown when enrolment is clicked */
+.enroll-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2300;
+  padding: 1.25rem;
+}
+
+.enroll-modal.is-open {
+  display: flex;
+}
+
+.enroll-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  animation: enroll-modal-fade 0.25s ease-out both;
+}
+
+.enroll-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(430px, 100%);
+  padding: 2.5rem 2rem 1.75rem;
+  text-align: center;
+  background: var(--dark-2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.65);
+  animation: enroll-modal-in 0.32s cubic-bezier(0.18, 0.89, 0.32, 1.15) both;
+}
+
+/* The dialog only takes focus programmatically, so it needs no ring itself */
+.enroll-modal__dialog:focus {
+  outline: none;
+}
+
+.enroll-modal__close:focus-visible,
+.enroll-modal__btn:focus-visible,
+.enroll-modal__dismiss:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.enroll-modal__close {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.75rem;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--gray);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.enroll-modal__close:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.enroll-modal__badge {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: rgba(0, 207, 232, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: contact-success-pop 0.45s 0.06s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
+}
+
+.enroll-modal__icon {
+  width: 36px;
+  height: 36px;
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.enroll-modal__title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+}
+
+.enroll-modal__text {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--gray);
+  line-height: 1.65;
+  margin-bottom: 1.6rem;
+}
+
+.enroll-modal__btn {
+  display: block;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: var(--black);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.enroll-modal__btn:hover {
+  background: var(--cyan-hover);
+}
+
+.enroll-modal__dismiss {
+  margin-top: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray);
+  cursor: pointer;
+}
+
+.enroll-modal__dismiss:hover {
+  color: var(--light);
+}
+
+@keyframes enroll-modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes enroll-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enroll-modal__backdrop,
+  .enroll-modal__dialog,
+  .enroll-modal__badge {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .enroll-modal__dialog {
+    padding: 2.25rem 1.35rem 1.5rem;
+  }
+
+  .enroll-modal__title {
+    font-size: 1.2rem;
+  }
+}
+
 .home-preview__ep {
   position: absolute;
   top: 1rem;

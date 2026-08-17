@@ -38,7 +38,7 @@ Upload all files to `public_html`:
 ### 5. Test
 
 1. Use Stripe **test keys** (sk_test_..., pk_test_...) first
-2. Visit course.html, click "Pay with Card"
+2. Visit `/course`, click "Pay with Card"
 3. Use test card `4242 4242 4242 4242`
 
 ---
@@ -66,3 +66,13 @@ Upload all files to `public_html`:
 ## Making the Price Editable
 
 Edit the `PRICE` variable in `course.html` (around line 35), or fetch from your backend.
+
+## URLs
+
+Pages are served without the `.html` extension (`/course`, `/about`, `/contact`, …),
+and `/` serves the home page. On Vercel this comes from `"cleanUrls": true` in
+`vercel.json`; on Apache/GoDaddy the rewrite rules in the root `.htaccess` do the
+same. Both 301-redirect the old `/page.html` URLs to the new ones, so existing
+links and search results keep working. The files on disk keep their `.html`
+names — only the public URLs change. Link between pages with root-relative paths
+(`href="/course"`), not `href="course.html"`.

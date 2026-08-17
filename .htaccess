@@ -1,2 +1,22 @@
 # Magistrate Court Mastermind - Apache config for GoDaddy shared hosting
 # PHP in /server/ executes normally. config.php protected via server/.htaccess
+
+# --- Clean URLs (extensionless pages) ---
+# Vercel handles this via "cleanUrls" in vercel.json; these rules do the same
+# thing on Apache so the site behaves identically on either host.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # /index.html and /index -> / (single canonical home URL)
+  RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+
+  # /page.html -> /page (301 so old inbound links and search results follow)
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Serve /page from page.html without changing the URL
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
