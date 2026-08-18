@@ -2,8 +2,6 @@
  * Restored stylesheet from last committed version.
  * (Matches previous design including footer and quick links.)
  */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-
 /* Full contents restored from git snapshot */
 /* (See project history for detailed rules.) */
 
@@ -11,8 +9,14 @@
  * MAGISTRATE COURT MASTERMIND - Premium Dark Theme
  * Cyan accent: #00CFE8 | Font: Poppins / Montserrat
  */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+/* Images carry intrinsic width/height attributes so the browser can reserve
+   space before they load (prevents layout shift). height:auto keeps them
+   scaling by aspect ratio once any CSS width applies - without it the height
+   attribute wins and the image stretches. The existing img rule further down
+   only applies below 600px, so this global one is what covers desktop. */
+img {
+  height: auto;
+}
 
 :root {
   --cyan: #00CFE8;
@@ -113,7 +117,7 @@ body.is-nav-open {
 .contact-hero {
   position: relative;
   padding: 4.5rem 2rem 5rem;
-  background: url("../images/contact_main_bg.png") center / cover no-repeat;
+  background: url("../images/contact_main_bg.webp") center / cover no-repeat;
   overflow: hidden;
 }
 
@@ -136,7 +140,7 @@ body.is-nav-open {
   position: absolute;
   inset: 0;
   width: 58%;
-  background: url("../images/contactus_hero.png") center / cover no-repeat;
+  background: url("../images/contactus_hero.webp") center / cover no-repeat;
   opacity: 0.35;
   z-index: 0;
   pointer-events: none;
@@ -172,7 +176,7 @@ body.is-nav-open {
   bottom: -1.05rem;
   width: 210px;
   height: 22px;
-  background-image: url('../images/clip_white.png');
+  background-image: url('../images/clip_white.webp');
   background-size: 100% 100%;
   background-position: 0 0;
   background-repeat: no-repeat;
@@ -670,7 +674,7 @@ body.is-nav-open {
   align-items: center;
   padding: 4rem 2.5rem 4.25rem;
   background-color: #0a0a0a;
-  background-image: url('../images/hero-bg.png?v=ff7b737');
+  background-image: url('../images/hero-bg.webp?v=ff7b737');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -855,7 +859,7 @@ body.is-nav-open {
   left: -10px;
   width: 600px;
   height: 550px;
-  background-image: url('../images/blue-crayon.png');
+  background-image: url('../images/blue-crayon.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -900,7 +904,7 @@ body.is-nav-open {
   margin-top: 4px;
   width: 100%;
   height: 20px;
-  background-image: url('../images/clip.png');
+  background-image: url('../images/clip.webp');
   background-size: 100% 100%;
   background-position: 0 0;
   background-repeat: no-repeat;
@@ -987,7 +991,7 @@ body.is-nav-open {
   position: relative;
   overflow: hidden;
   background: var(--dark-2);
-  background-image: url('../images/masterclass_explainedbg.png');
+  background-image: url('../images/masterclass_explainedbg.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1001,7 +1005,7 @@ body.is-nav-open {
   right: 0;
   width: 400px;
   height: 500px;
-  background-image: url('../images/backvideo.png');
+  background-image: url('../images/backvideo.webp');
   background-size: contain;
   background-position: 100% 100%;
   background-repeat: no-repeat;
@@ -1042,7 +1046,7 @@ body.is-nav-open {
   margin-top: 4px;
   width: 100%;
   height: 20px;
-  background-image: url('../images/clip.png');
+  background-image: url('../images/clip.webp');
   background-size: 100% 100%;
   background-position: 0 0;
   background-repeat: no-repeat;
@@ -1210,7 +1214,7 @@ body.is-nav-open {
   transform: translateY(-50%);
   width: 800px;
   height: 500px;
-  background-image: url('../images/courtroomdesign.png');
+  background-image: url('../images/courtroomdesign.webp');
   background-size: contain;
   background-position: left center;
   background-repeat: no-repeat;
@@ -1258,7 +1262,7 @@ body.is-nav-open {
   position: relative;
   display: inline-block;
   padding: 0.08em 0.4em;
-  background-image: url('../images/circle.png');
+  background-image: url('../images/circle.webp');
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -1373,51 +1377,51 @@ body.is-nav-open {
 
 /* Specific thumbnails for each episode */
 .home-preview__item--ep1 {
-  background-image: url('../images/ep1.png');
+  background-image: url('../images/ep1.webp');
 }
 
 .home-preview__item--ep2 {
-  background-image: url('../images/ep2.png');
+  background-image: url('../images/ep2.webp');
 }
 
 .home-preview__item--ep3 {
-  background-image: url('../images/ep3.png');
+  background-image: url('../images/ep3.webp');
 }
 
 .home-preview__item--ep4 {
-  background-image: url('../images/ep4.png');
+  background-image: url('../images/ep4.webp');
 }
 
 .home-preview__item--ep5 {
-  background-image: url('../images/ep5.png');
+  background-image: url('../images/ep5.webp');
 }
 
 .home-preview__item--ep6 {
-  background-image: url('../images/ep6.png');
+  background-image: url('../images/ep6.webp');
 }
 
 .home-preview__item--ep7 {
-  background-image: url('../images/ep7.png');
+  background-image: url('../images/ep7.webp');
 }
 
 .home-preview__item--ep8 {
-  background-image: url('../images/ep8.png');
+  background-image: url('../images/ep8.webp');
 }
 
 .home-preview__item--ep9 {
-  background-image: url('../images/ep9.png');
+  background-image: url('../images/ep9.webp');
 }
 
 .home-preview__item--ep10 {
-  background-image: url('../images/ep10.png');
+  background-image: url('../images/ep10.webp');
 }
 
 .home-preview__item--ep11 {
-  background-image: url('../images/ep11.png');
+  background-image: url('../images/ep11.webp');
 }
 
 .home-preview__item--ep12 {
-  background-image: url('../images/ep12.png');
+  background-image: url('../images/ep12.webp');
 }
 
 /* ============ MASTERCLASS PREVIEW PAGE ============ */
@@ -1441,7 +1445,7 @@ body.is-nav-open {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../images/backgroundimage.png');
+  background-image: url('../images/backgroundimage.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1498,7 +1502,7 @@ body.is-nav-open {
   bottom: 0;
   width: 100%;
   height: 0.5em;
-  background-image: url('../images/clip_white.png');
+  background-image: url('../images/clip_white.webp');
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: contain;
@@ -1551,7 +1555,7 @@ body.is-nav-open {
   bottom: 8%;
   width: 430px;  /* larger glow */
   height: 430px;
-  background-image: url('../images/whiteglow.png');
+  background-image: url('../images/whiteglow.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1758,7 +1762,7 @@ body.is-nav-open {
   box-sizing: border-box;
 }
 
-.preview-lessons__thumb--ep1       { background-image: url('../images/ep1.png'); }
+.preview-lessons__thumb--ep1       { background-image: url('../images/ep1.webp'); }
 .preview-lessons__thumb-play {
   position: absolute;
   top: 50%;
@@ -1774,17 +1778,17 @@ body.is-nav-open {
   color: #ffffff;
 }
 
-.preview-lessons__thumb--ep2       { background-image: url('../images/ep2.png'); }
-.preview-lessons__thumb--ep3       { background-image: url('../images/ep3.png'); }
-.preview-lessons__thumb--ep4       { background-image: url('../images/ep4.png'); }
-.preview-lessons__thumb--ep5       { background-image: url('../images/ep5.png'); }
-.preview-lessons__thumb--ep6       { background-image: url('../images/ep6.png'); }
-.preview-lessons__thumb--ep7       { background-image: url('../images/ep7.png'); }
-.preview-lessons__thumb--ep8       { background-image: url('../images/ep8.png'); }
-.preview-lessons__thumb--ep9       { background-image: url('../images/ep9.png'); }
-.preview-lessons__thumb--ep10      { background-image: url('../images/ep10.png'); }
-.preview-lessons__thumb--ep11      { background-image: url('../images/ep11.png'); }
-.preview-lessons__thumb--ep12      { background-image: url('../images/ep12.png'); }
+.preview-lessons__thumb--ep2       { background-image: url('../images/ep2.webp'); }
+.preview-lessons__thumb--ep3       { background-image: url('../images/ep3.webp'); }
+.preview-lessons__thumb--ep4       { background-image: url('../images/ep4.webp'); }
+.preview-lessons__thumb--ep5       { background-image: url('../images/ep5.webp'); }
+.preview-lessons__thumb--ep6       { background-image: url('../images/ep6.webp'); }
+.preview-lessons__thumb--ep7       { background-image: url('../images/ep7.webp'); }
+.preview-lessons__thumb--ep8       { background-image: url('../images/ep8.webp'); }
+.preview-lessons__thumb--ep9       { background-image: url('../images/ep9.webp'); }
+.preview-lessons__thumb--ep10      { background-image: url('../images/ep10.webp'); }
+.preview-lessons__thumb--ep11      { background-image: url('../images/ep11.webp'); }
+.preview-lessons__thumb--ep12      { background-image: url('../images/ep12.webp'); }
 
 .preview-lessons__pagination {
   display: flex;
@@ -2131,7 +2135,7 @@ body.is-nav-open {
 .home-meet {
   position: relative;
   background: #000;
-  background-image: url('../images/ibrahimbg.png');
+  background-image: url('../images/ibrahimbg.webp');
   background-size: cover;
   background-position: center;
   padding: 7rem 2rem 2rem;
@@ -2469,7 +2473,7 @@ body.is-nav-open {
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
-  background-image: url('../images/courtdatebg.png');
+  background-image: url('../images/courtdatebg.webp');
   background-size: cover;
   background-position: center;
   border-radius: 32px;
@@ -2545,7 +2549,7 @@ body.is-nav-open {
   left: 0;
   width: 420px;
   height: 420px;
-  background-image: url('../images/bottom_left_footer.png');
+  background-image: url('../images/bottom_left_footer.webp');
   transform-origin: left bottom;
   transform: scale(2.0); /* 30% larger, adjust as needed */
 }
@@ -2556,7 +2560,7 @@ body.is-nav-open {
   width: 380px;
   height: 350px;
   transform: translateX(193px) scale(2.8);
-  background-image: url('../images/center-right.png');
+  background-image: url('../images/center-right.webp');
 }
 
 .footer__quick-links {
@@ -2972,7 +2976,7 @@ body.is-nav-open {
   width: calc(100% + 1.4em);
   height: 1.7em;
   transform: translate(-50%, -50%);
-  background: url("../images/circledesign.png") center / 100% 100% no-repeat;
+  background: url("../images/circledesign.webp") center / 100% 100% no-repeat;
   pointer-events: none;
   z-index: -1;
 }
@@ -2998,7 +3002,7 @@ body.is-nav-open {
 
 .course-curriculum {
   padding: 5rem 2rem 5.5rem;
-  background: #ffffff url("../images/coursecurribg.png") center / cover no-repeat;
+  background: #ffffff url("../images/coursecurribg.webp") center / cover no-repeat;
 }
 
 .course-curriculum__inner {
@@ -3037,7 +3041,7 @@ body.is-nav-open {
   right: -0.2rem;
   bottom: -0.55rem;
   height: 16px;
-  background: url("../images/clip.png") center / 100% 100% no-repeat;
+  background: url("../images/clip.webp") center / 100% 100% no-repeat;
   pointer-events: none;
 }
 
@@ -3347,7 +3351,7 @@ body.is-nav-open {
 /* ============ ABOUT PAGE ============ */
 .hero--about {
   min-height: 60vh;
-  background-image: url('../images/Awad5.png');
+  background-image: url('../images/Awad5.webp');
   background-size: cover;
   background-position: center calc(40% + 20px);
   /* Match .about-program horizontal padding so “ABOUT US” lines up with program headline */
@@ -3421,7 +3425,7 @@ body.is-nav-open {
   bottom: -16px; /* moved slightly further below PRACTICE for clearer separation */
   width: 100%;
   height: 20px;
-  background-image: url('../images/clip.png');
+  background-image: url('../images/clip.webp');
   background-size: 100% 100%;
   background-position: 0 0;
   background-repeat: no-repeat;
@@ -3450,7 +3454,7 @@ body.is-nav-open {
   top: 50%;
   width: 600px;
   height: 700px;
-  background: url("../images/2krightbottom.png") left center / contain no-repeat;
+  background: url("../images/2krightbottom.webp") left center / contain no-repeat;
   transform: translateY(-55%);
   pointer-events: none;
   z-index: 0;
@@ -3474,7 +3478,7 @@ body.is-nav-open {
   left: 0;
   bottom: -16px;
   right: -16px;
-  background-image: url("../images/rectangle.png");
+  background-image: url("../images/rectangle.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 32px;
@@ -3492,7 +3496,7 @@ body.is-nav-open {
   margin-bottom: 3px;
   background-image:
     linear-gradient(90deg, rgba(0, 199, 232, 0.95), rgba(0, 125, 191, 0.98)),
-    url("../images/2kstudents.png");
+    url("../images/2kstudents.webp");
   background-size: cover, cover;
   background-position: center, center;
   background-repeat: no-repeat;
@@ -3580,7 +3584,7 @@ body.is-nav-open {
 /* About three-column features */
 .about-features {
   position: relative;
-  background: url("../images/masterthemagistratebg.png") center / cover no-repeat;
+  background: url("../images/masterthemagistratebg.webp") center / cover no-repeat;
   padding: 10rem 2rem;
   overflow: hidden;
 }
@@ -3601,7 +3605,7 @@ body.is-nav-open {
   top: 65%;
   width: 600px;
   height: 700px;
-  background: url("../images/rightsidedesign.png") right center no-repeat;
+  background: url("../images/rightsidedesign.webp") right center no-repeat;
   background-size: 100% auto;
   transform: translateY(-50%);
   pointer-events: none;
@@ -3704,7 +3708,7 @@ body.is-nav-open {
   bottom: 0;
   width: 120%;
   height: 20px;
-  background-image: url('../images/clip.png');
+  background-image: url('../images/clip.webp');
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -3750,7 +3754,7 @@ body.is-nav-open {
   left: -10px;
   right: 0;
   bottom: 0;
-  background-image: url("../images/rectangle.png");
+  background-image: url("../images/rectangle.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 32px;
@@ -3815,7 +3819,7 @@ body.is-nav-open {
   left: 0;
   bottom: -16px;
   right: -16px;
-  background-image: url("../images/rectangle.png");
+  background-image: url("../images/rectangle.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 32px;
@@ -3851,7 +3855,7 @@ body.is-nav-open {
   right: 0;
   bottom: 0;
   height: 12px;
-  background: url("../images/clip.png") center / 100% 100% no-repeat;
+  background: url("../images/clip.webp") center / 100% 100% no-repeat;
 }
 /* Meet Our Expert Instructor */
 .about-instructor {
@@ -3867,7 +3871,7 @@ body.is-nav-open {
   top: 20%;           /* vertical position (adjust as needed) */
   width: 300px;       /* size/scale (adjust to change scale) */
   height: 700px;
-  background: url("../images/instructor_leftdesign.png") center / contain no-repeat;
+  background: url("../images/instructor_leftdesign.webp") center / contain no-repeat;
   transform: translateY(-50%); /* only center vertically */
   pointer-events: none;
   z-index: 0;         /* sit behind text/content */
@@ -3902,7 +3906,7 @@ body.is-nav-open {
   bottom: -4px;
   width: 100%;
   height: 12px;
-  background: url("../images/clip.png") center / 100% 100% no-repeat;
+  background: url("../images/clip.webp") center / 100% 100% no-repeat;
 }
 
 .about-instructor__bio {
@@ -3918,7 +3922,7 @@ body.is-nav-open {
 }
 
 .about-instructor__banner {
-  background-image: url("../images/semi-rectangle.png"), url("../images/image.png");
+  background-image: url("../images/semi-rectangle.webp"), url("../images/image.webp");
   background-size: 112% 112%, cover;
   background-position: center, center;
   background-repeat: no-repeat;
@@ -4027,7 +4031,7 @@ body.is-nav-open {
   bottom: -4px;
   width: 100%;
   height: 12px;
-  background: url("../images/clip.png") center / 100% 100% no-repeat;
+  background: url("../images/clip.webp") center / 100% 100% no-repeat;
 }
 
 .about-video__player {
@@ -4089,7 +4093,7 @@ body.is-nav-open {
   bottom: -6px;
   width: 100%;
   height: 14px;
-  background-image: url('../images/clip.png');
+  background-image: url('../images/clip.webp');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -4111,7 +4115,7 @@ body.is-nav-open {
   transform: translateX(-50%);
   width: 620px;         /* scale a bit larger */
   height: 300px;
-  background-image: url('../images/backdesign.png');
+  background-image: url('../images/backdesign.webp');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -6444,18 +6448,18 @@ body.is-nav-open {
     background-repeat: no-repeat !important;
   }
 
-  .home-preview__item--ep1  { background-image: url('../images/ep1.png') !important; }
-  .home-preview__item--ep2  { background-image: url('../images/ep2.png') !important; }
-  .home-preview__item--ep3  { background-image: url('../images/ep3.png') !important; }
-  .home-preview__item--ep4  { background-image: url('../images/ep4.png') !important; }
-  .home-preview__item--ep5  { background-image: url('../images/ep5.png') !important; }
-  .home-preview__item--ep6  { background-image: url('../images/ep6.png') !important; }
-  .home-preview__item--ep7  { background-image: url('../images/ep7.png') !important; }
-  .home-preview__item--ep8  { background-image: url('../images/ep8.png') !important; }
-  .home-preview__item--ep9  { background-image: url('../images/ep9.png') !important; }
-  .home-preview__item--ep10 { background-image: url('../images/ep10.png') !important; }
-  .home-preview__item--ep11 { background-image: url('../images/ep11.png') !important; }
-  .home-preview__item--ep12 { background-image: url('../images/ep12.png') !important; }
+  .home-preview__item--ep1  { background-image: url('../images/ep1.webp') !important; }
+  .home-preview__item--ep2  { background-image: url('../images/ep2.webp') !important; }
+  .home-preview__item--ep3  { background-image: url('../images/ep3.webp') !important; }
+  .home-preview__item--ep4  { background-image: url('../images/ep4.webp') !important; }
+  .home-preview__item--ep5  { background-image: url('../images/ep5.webp') !important; }
+  .home-preview__item--ep6  { background-image: url('../images/ep6.webp') !important; }
+  .home-preview__item--ep7  { background-image: url('../images/ep7.webp') !important; }
+  .home-preview__item--ep8  { background-image: url('../images/ep8.webp') !important; }
+  .home-preview__item--ep9  { background-image: url('../images/ep9.webp') !important; }
+  .home-preview__item--ep10 { background-image: url('../images/ep10.webp') !important; }
+  .home-preview__item--ep11 { background-image: url('../images/ep11.webp') !important; }
+  .home-preview__item--ep12 { background-image: url('../images/ep12.webp') !important; }
 
   .home-preview__play {
     background: rgba(0, 0, 0, 0.6) !important;
@@ -6737,7 +6741,7 @@ body.is-nav-open {
     transform: translateX(-50%) !important;
     width: 220px !important;
     height: 220px !important;
-    background-image: url('../images/whiteglow.png') !important;
+    background-image: url('../images/whiteglow.webp') !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -6915,7 +6919,7 @@ body.is-nav-open {
     width: 200px !important;
     height: 200px !important;
     transform: none !important;
-    background-image: url('../images/whiteglow.png') !important;
+    background-image: url('../images/whiteglow.webp') !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
